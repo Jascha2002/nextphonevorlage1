@@ -19,6 +19,9 @@ import StromCheck from "./pages/StromCheck";
 import Karriere from "./pages/Karriere";
 import Team from "./pages/Team";
 import Blog from "./pages/Blog";
+import VodafoneGigaMobil from "./pages/blog/VodafoneGigaMobil";
+import TelekomPreiserhoehung from "./pages/blog/TelekomPreiserhoehung";
+import SamsungGalaxyS26 from "./pages/blog/SamsungGalaxyS26";
 import Vertriebspartner from "./pages/Vertriebspartner";
 import TarifRechner from "./pages/TarifRechner";
 import Impressum from "./pages/Impressum";
@@ -52,6 +55,9 @@ const App = () => (
             <Route path="/karriere" element={<Karriere />} />
             <Route path="/team" element={<Team />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/vodafone-gigamobil-rabatt" element={<VodafoneGigaMobil />} />
+            <Route path="/blog/telekom-preiserhoehung-optionen" element={<TelekomPreiserhoehung />} />
+            <Route path="/blog/samsung-galaxy-s26-angebot" element={<SamsungGalaxyS26 />} />
             <Route path="/vertriebspartner" element={<Vertriebspartner />} />
             <Route path="/tarif-rechner" element={<TarifRechner />} />
             <Route path="/impressum" element={<Impressum />} />
