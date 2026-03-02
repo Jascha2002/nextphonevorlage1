@@ -14,6 +14,7 @@ import Karriere from "./pages/Karriere";
 import Team from "./pages/Team";
 import Blog from "./pages/Blog";
 import Vertriebspartner from "./pages/Vertriebspartner";
+import TarifRechner from "./pages/TarifRechner";
 
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
@@ -39,7 +40,8 @@ const App = () => (
             <Route path="/team" element={<Team />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/vertriebspartner" element={<Vertriebspartner />} />
-            
+            <Route path="/tarif-rechner" element={<TarifRechner />} />
+
             <Route path="/impressum" element={<Impressum />} />
             <Route path="/datenschutz" element={<Datenschutz />} />
             <Route path="*" element={<NotFound />} />
