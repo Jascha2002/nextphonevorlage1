@@ -64,7 +64,7 @@ const Header = () => {
     >
       <div className="container mx-auto h-full flex items-center justify-between px-4">
         <Link to="/" className="flex-shrink-0">
-          <img src="/images/nextphones-logo.png" alt="NextPhones Logo" className="h-10" />
+          <img src="/images/nextphones-logo.png" alt="NextPhones Logo" className="h-14 md:h-16" />
         </Link>
 
         {/* Desktop nav */}
