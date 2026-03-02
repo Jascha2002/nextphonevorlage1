@@ -1,14 +1,19 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Wifi, Smartphone, Wrench, Radio, Phone, Briefcase } from "lucide-react";
+import serviceDsl from "@/assets/service-dsl.jpg";
+import serviceMobilfunk from "@/assets/service-mobilfunk.jpg";
+import serviceHandyservice from "@/assets/service-handyservice.jpg";
+import serviceWlan from "@/assets/service-wlan.jpg";
+import serviceVoip from "@/assets/service-voip.jpg";
+import serviceBusiness from "@/assets/service-business.jpg";
 
 const services = [
-  { icon: Wifi, title: "DSL & Festnetz", desc: "Schnelles Internet und Telefon für Ihr Zuhause – mit den besten Tarifen der Region." },
-  { icon: Smartphone, title: "Mobilfunk", desc: "Verträge, Prepaid und Hardware – wir finden den passenden Tarif für Sie." },
-  { icon: Wrench, title: "Handyservice", desc: "Display-Reparatur, Datensicherung und mehr – schnell und professionell." },
-  { icon: Radio, title: "WLAN-Einrichtung", desc: "Optimale WLAN-Abdeckung in Ihrem Zuhause oder Büro." },
-  { icon: Phone, title: "VoIP-Telefonie", desc: "Moderne Telefonlösungen für Unternehmen mit Placetel & Co." },
-  { icon: Briefcase, title: "Geschäftskunden", desc: "Rahmenverträge, Flottenmanagement und individuelle Lösungen." },
+  { image: serviceDsl, title: "DSL & Festnetz", desc: "Schnelles Internet und Telefon für Ihr Zuhause – mit den besten Tarifen der Region." },
+  { image: serviceMobilfunk, title: "Mobilfunk", desc: "Verträge, Prepaid und Hardware – wir finden den passenden Tarif für Sie." },
+  { image: serviceHandyservice, title: "Handyservice", desc: "Display-Reparatur, Datensicherung und mehr – schnell und professionell." },
+  { image: serviceWlan, title: "WLAN-Einrichtung", desc: "Optimale WLAN-Abdeckung in Ihrem Zuhause oder Büro." },
+  { image: serviceVoip, title: "VoIP-Telefonie", desc: "Moderne Telefonlösungen für Unternehmen mit Placetel & Co." },
+  { image: serviceBusiness, title: "Geschäftskunden", desc: "Rahmenverträge, Flottenmanagement und individuelle Lösungen." },
 ];
 
 const ServicesSection = () => {
@@ -40,13 +45,22 @@ const ServicesSection = () => {
             >
               <Link
                 to="/leistungen"
-                className="block bg-card rounded-lg p-6 border-t-2 border-brand-red shadow-sm hover:shadow-md service-card-glow transition-all h-full"
+                className="block bg-card rounded-lg overflow-hidden border shadow-sm hover:shadow-md service-card-glow transition-all h-full"
               >
-                <service.icon className="h-8 w-8 text-primary mb-4" />
-                <h3 className="text-lg font-semibold text-card-foreground mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-muted-foreground">{service.desc}</p>
+                <div className="h-48 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-card-foreground mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">{service.desc}</p>
+                </div>
               </Link>
             </motion.div>
           ))}
