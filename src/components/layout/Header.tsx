@@ -87,16 +87,18 @@ const Header = () => {
                   <ChevronDown className="h-3.5 w-3.5" />
                 </Link>
                 {dropdownOpen === link.path && (
-                  <div className="absolute top-full left-0 bg-background rounded-lg shadow-lg border py-2 min-w-[200px]">
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.path}
-                        to={child.path}
-                        className="block px-4 py-2 text-sm hover:bg-secondary hover:text-primary transition-colors"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                  <div className="absolute top-full left-0 pt-1">
+                    <div className="bg-background rounded-lg shadow-lg border py-2 min-w-[200px]">
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.path}
+                          to={child.path}
+                          className="block px-4 py-2 text-sm hover:bg-secondary hover:text-primary transition-colors"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
