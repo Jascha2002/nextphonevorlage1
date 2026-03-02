@@ -13,7 +13,7 @@ const FoerdermittelSection = () => {
           <img
             src="/images/funding-logo.png"
             alt="Gefördert durch Freistaat Thüringen und ESF+"
-            className="h-16 md:h-20"
+            className="h-24 md:h-32 w-auto"
           />
           <div>
             <h3 className="text-lg font-semibold text-foreground mb-2">
