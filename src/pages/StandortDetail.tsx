@@ -1,6 +1,12 @@
 import { useParams, Link } from "react-router-dom";
 import { locations } from "@/data/locations";
-import { MapPin, Phone, Clock, Navigation } from "lucide-react";
+import { MapPin, Phone, Clock, Navigation, User, Briefcase, Users, Building2 } from "lucide-react";
+
+const services = [
+  { icon: User, label: "Privatkunden", desc: "DSL, Mobilfunk, Handyservice & mehr" },
+  { icon: Briefcase, label: "Geschäftskunden", desc: "Rahmenverträge, VoIP & IT-Lösungen" },
+  { icon: Users, label: "Vertriebspartner", desc: "Telekom, Vodafone, 1&1, congstar & mehr" },
+];
 
 const StandortDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -21,14 +27,20 @@ const StandortDetail = () => {
       <div className="bg-primary py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold text-primary-foreground mb-2">{location.name}</h1>
-          <p className="text-primary-foreground/80">{location.address}, {location.zip}</p>
+          <p className="text-primary-foreground/80 mb-6">{location.address}, {location.zip}</p>
+          <Link
+            to="/beratung"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-background text-primary font-semibold rounded-lg hover:opacity-90 transition-opacity"
+          >
+            Beratung sichern
+          </Link>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Info */}
-          <div>
+          <div className="space-y-8">
             <div className="bg-card rounded-lg p-6 border shadow-sm space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary mt-0.5" />
@@ -41,7 +53,7 @@ const StandortDetail = () => {
                 <Phone className="h-5 w-5 text-primary mt-0.5" />
                 <div>
                   <p className="font-medium text-foreground">Telefon</p>
-                  <a href={`tel:${location.phone.replace("/", "")}`} className="text-sm text-primary hover:underline">{location.phone}</a>
+                  <a href={`tel:${location.phone.replace(/[\s\-\/]/g, "")}`} className="text-sm text-primary hover:underline">{location.phone}</a>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -63,27 +75,66 @@ const StandortDetail = () => {
               </a>
             </div>
 
-            <div className="mt-8">
-              <Link
-                to="/beratung"
-                className="block w-full text-center px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity"
-              >
-                Beratung buchen
-              </Link>
+            {/* Contact person */}
+            <div className="bg-surface-warm rounded-lg p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Building2 className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground">{location.contact.name}</p>
+                  <p className="text-xs text-muted-foreground">{location.contact.role}</p>
+                </div>
+              </div>
+              <blockquote className="text-sm text-muted-foreground italic border-l-2 border-primary pl-4">
+                "{location.contact.quote}"
+              </blockquote>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h2 className="text-lg font-bold text-foreground mb-4">Unsere Leistungen</h2>
+              <div className="space-y-3">
+                {services.map((s) => (
+                  <div key={s.label} className="flex items-start gap-3 bg-card rounded-lg p-4 border">
+                    <s.icon className="h-5 w-5 text-primary mt-0.5" />
+                    <div>
+                      <p className="font-medium text-foreground text-sm">{s.label}</p>
+                      <p className="text-xs text-muted-foreground">{s.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Provider logos */}
+            <div>
+              <h2 className="text-lg font-bold text-foreground mb-4">Unsere Partner</h2>
+              <img src="/images/provider-logos.png" alt="NextPhones Partner" className="w-full max-w-md" />
             </div>
           </div>
 
           {/* Map */}
-          <div className="rounded-lg overflow-hidden shadow-md">
-            <iframe
-              title={location.name}
-              src={`https://maps.google.com/maps?q=${location.mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              loading="lazy"
-              className="w-full"
-            />
+          <div className="space-y-8">
+            <div className="rounded-lg overflow-hidden shadow-md">
+              <iframe
+                title={location.name}
+                src={`https://maps.google.com/maps?q=${location.mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                loading="lazy"
+                className="w-full"
+              />
+            </div>
+
+            {/* CTA */}
+            <Link
+              to="/beratung"
+              className="block w-full text-center px-6 py-3 bg-primary text-primary-foreground rounded-lg font-semibold hover:opacity-90 transition-opacity"
+            >
+              Jetzt Beratung sichern
+            </Link>
           </div>
         </div>
       </div>

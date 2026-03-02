@@ -3,7 +3,14 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { locations } from "@/data/locations";
 
-const navLinks = [
+interface NavLink {
+  label: string;
+  path: string;
+  external?: boolean;
+  children?: { label: string; path: string }[];
+}
+
+const navLinks: NavLink[] = [
   { label: "Startseite", path: "/" },
   {
     label: "Standorte",
@@ -15,6 +22,7 @@ const navLinks = [
   },
   { label: "Leistungen", path: "/leistungen" },
   { label: "Vertriebspartner", path: "/vertriebspartner" },
+  { label: "Partnershop", path: "https://www.handytick.de/?refid=456613", external: true },
   { label: "Karriere", path: "/karriere" },
   { label: "Team", path: "/team" },
   { label: "Blog", path: "/blog" },
@@ -45,11 +53,7 @@ const Header = () => {
     >
       <div className="container mx-auto h-full flex items-center justify-between px-4">
         <Link to="/" className="flex-shrink-0">
-          <img
-            src="/images/nextphones-logo.png"
-            alt="NextPhones Logo"
-            className="h-10"
-          />
+          <img src="/images/nextphones-logo.png" alt="NextPhones Logo" className="h-10" />
         </Link>
 
         {/* Desktop nav */}
@@ -65,9 +69,7 @@ const Header = () => {
                 <Link
                   to={link.path}
                   className={`px-3 py-2 text-sm font-medium transition-colors hover:text-primary flex items-center gap-1 ${
-                    location.pathname.startsWith("/standorte")
-                      ? "text-primary"
-                      : "text-foreground"
+                    location.pathname.startsWith("/standorte") ? "text-primary" : "text-foreground"
                   }`}
                 >
                   {link.label}
@@ -87,14 +89,22 @@ const Header = () => {
                   </div>
                 )}
               </div>
+            ) : link.external ? (
+              <a
+                key={link.path}
+                href={link.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-2 text-sm font-medium transition-colors hover:text-primary text-foreground"
+              >
+                {link.label}
+              </a>
             ) : (
               <Link
                 key={link.path}
                 to={link.path}
                 className={`px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                  location.pathname === link.path
-                    ? "text-primary border-b-2 border-brand-red"
-                    : "text-foreground"
+                  location.pathname === link.path ? "text-primary border-b-2 border-brand-red" : "text-foreground"
                 }`}
               >
                 {link.label}
@@ -110,11 +120,7 @@ const Header = () => {
         </nav>
 
         {/* Mobile toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-2 text-foreground"
-          aria-label="Menü"
-        >
+        <button onClick={() => setMobileOpen(!mobileOpen)} className="lg:hidden p-2 text-foreground" aria-label="Menü">
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
@@ -125,12 +131,20 @@ const Header = () => {
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-2">
             {navLinks.map((link) => (
               <div key={link.path}>
-                <Link
-                  to={link.path}
-                  className="block py-2 text-sm font-medium hover:text-primary"
-                >
-                  {link.label}
-                </Link>
+                {link.external ? (
+                  <a
+                    href={link.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block py-2 text-sm font-medium hover:text-primary"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link to={link.path} className="block py-2 text-sm font-medium hover:text-primary">
+                    {link.label}
+                  </Link>
+                )}
                 {link.children && (
                   <div className="pl-4">
                     {link.children.map((child) => (
