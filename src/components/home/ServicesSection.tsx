@@ -8,12 +8,12 @@ import serviceVoip from "@/assets/service-voip.jpg";
 import serviceBusiness from "@/assets/service-business.jpg";
 
 const services = [
-  { image: serviceDsl, title: "DSL & Festnetz", desc: "Schnelles Internet und Telefon für Ihr Zuhause – mit den besten Tarifen der Region." },
-  { image: serviceMobilfunk, title: "Mobilfunk", desc: "Verträge, Prepaid und Hardware – wir finden den passenden Tarif für Sie." },
-  { image: serviceHandyservice, title: "Handyservice", desc: "Display-Reparatur, Datensicherung und mehr – schnell und professionell." },
-  { image: serviceWlan, title: "WLAN-Einrichtung", desc: "Optimale WLAN-Abdeckung in Ihrem Zuhause oder Büro." },
-  { image: serviceVoip, title: "VoIP-Telefonie", desc: "Moderne Telefonlösungen für Unternehmen mit Placetel & Co." },
-  { image: serviceBusiness, title: "Geschäftskunden", desc: "Rahmenverträge, Flottenmanagement und individuelle Lösungen." },
+  { image: serviceDsl, title: "DSL & Festnetz", slug: "dsl-festnetz", desc: "Schnelles Internet und Telefon für Ihr Zuhause – mit den besten Tarifen der Region." },
+  { image: serviceMobilfunk, title: "Mobilfunk", slug: "mobilfunk", desc: "Verträge, Prepaid und Hardware – wir finden den passenden Tarif für Sie." },
+  { image: serviceHandyservice, title: "Handyservice", slug: "handyservice", desc: "Display-Reparatur, Datensicherung und mehr – schnell und professionell." },
+  { image: serviceWlan, title: "WLAN-Einrichtung", slug: "wlan-einrichtung", desc: "Optimale WLAN-Abdeckung in Ihrem Zuhause oder Büro." },
+  { image: serviceVoip, title: "VoIP-Telefonie", slug: "voip-telefonie", desc: "Moderne Telefonlösungen für Unternehmen mit Placetel & Co." },
+  { image: serviceBusiness, title: "Geschäftskunden", slug: "geschaeftskunden", desc: "Rahmenverträge, Flottenmanagement und individuelle Lösungen." },
 ];
 
 const ServicesSection = () => {
@@ -44,7 +44,7 @@ const ServicesSection = () => {
               transition={{ delay: i * 0.08 }}
             >
               <Link
-                to="/leistungen"
+                to={`/leistungen/${service.slug}`}
                 className="block bg-card rounded-lg overflow-hidden border shadow-sm hover:shadow-md service-card-glow transition-all h-full"
               >
                 <div className="h-48 overflow-hidden">

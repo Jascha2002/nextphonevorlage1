@@ -8,6 +8,12 @@ import Index from "./pages/Index";
 import Standorte from "./pages/Standorte";
 import StandortDetail from "./pages/StandortDetail";
 import Leistungen from "./pages/Leistungen";
+import DslFestnetz from "./pages/leistungen/DslFestnetz";
+import Mobilfunk from "./pages/leistungen/Mobilfunk";
+import Handyservice from "./pages/leistungen/Handyservice";
+import WlanEinrichtung from "./pages/leistungen/WlanEinrichtung";
+import VoipTelefonie from "./pages/leistungen/VoipTelefonie";
+import Geschaeftskunden from "./pages/leistungen/Geschaeftskunden";
 import Beratung from "./pages/Beratung";
 import StromCheck from "./pages/StromCheck";
 import Karriere from "./pages/Karriere";
@@ -35,6 +41,12 @@ const App = () => (
             <Route path="/standorte" element={<Standorte />} />
             <Route path="/standorte/:slug" element={<StandortDetail />} />
             <Route path="/leistungen" element={<Leistungen />} />
+            <Route path="/leistungen/dsl-festnetz" element={<DslFestnetz />} />
+            <Route path="/leistungen/mobilfunk" element={<Mobilfunk />} />
+            <Route path="/leistungen/handyservice" element={<Handyservice />} />
+            <Route path="/leistungen/wlan-einrichtung" element={<WlanEinrichtung />} />
+            <Route path="/leistungen/voip-telefonie" element={<VoipTelefonie />} />
+            <Route path="/leistungen/geschaeftskunden" element={<Geschaeftskunden />} />
             <Route path="/beratung" element={<Beratung />} />
             <Route path="/strom-check" element={<StromCheck />} />
             <Route path="/karriere" element={<Karriere />} />
