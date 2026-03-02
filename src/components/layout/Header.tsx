@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { locations } from "@/data/locations";
+import ThemeToggle from "@/components/ThemeToggle";
 
 interface NavLink {
   label: string;
@@ -124,9 +125,10 @@ const Header = () => {
               </Link>
             )
           )}
+          <ThemeToggle />
           <Link
             to="/beratung"
-            className="ml-4 px-5 py-2 bg-primary text-primary-foreground text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity"
+            className="ml-2 px-5 py-2 bg-primary text-primary-foreground text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity"
           >
             Beratung sichern
           </Link>
@@ -173,12 +175,15 @@ const Header = () => {
                 )}
               </div>
             ))}
-            <Link
-              to="/beratung"
-              className="mt-2 px-5 py-2.5 bg-primary text-primary-foreground text-sm font-semibold rounded-lg text-center"
-            >
-              Beratung sichern
-            </Link>
+            <div className="flex items-center gap-3 mt-2">
+              <ThemeToggle />
+              <Link
+                to="/beratung"
+                className="flex-1 px-5 py-2.5 bg-primary text-primary-foreground text-sm font-semibold rounded-lg text-center"
+              >
+                Beratung sichern
+              </Link>
+            </div>
           </nav>
         </div>
       )}
