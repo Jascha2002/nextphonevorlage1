@@ -30,7 +30,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-black text-primary-foreground mb-4"
+            className="text-5xl md:text-7xl lg:text-8xl font-black text-primary mb-4"
           >
             NextPhones
           </motion.h1>

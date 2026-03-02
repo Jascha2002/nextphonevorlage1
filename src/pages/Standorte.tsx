@@ -16,7 +16,7 @@ const Standorte = () => {
             <Link
               key={loc.slug}
               to={`/standorte/${loc.slug}`}
-              className="bg-card rounded-lg p-6 border shadow-sm hover:shadow-md transition-shadow"
+              className="bg-card rounded-lg p-6 border-2 border-primary shadow-sm hover:shadow-lg hover:bg-primary/5 transition-all"
             >
               <MapPin className="h-6 w-6 text-primary mb-3" />
               <h2 className="text-xl font-semibold text-foreground mb-2">{loc.city}</h2>
