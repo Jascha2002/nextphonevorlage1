@@ -3,7 +3,20 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "@/components/layout/Layout";
 import Index from "./pages/Index";
+import Standorte from "./pages/Standorte";
+import StandortDetail from "./pages/StandortDetail";
+import Leistungen from "./pages/Leistungen";
+import Beratung from "./pages/Beratung";
+import StromCheck from "./pages/StromCheck";
+import Karriere from "./pages/Karriere";
+import Team from "./pages/Team";
+import Blog from "./pages/Blog";
+import Vertriebspartner from "./pages/Vertriebspartner";
+import Partnershop from "./pages/Partnershop";
+import Impressum from "./pages/Impressum";
+import Datenschutz from "./pages/Datenschutz";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -14,11 +27,24 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/standorte" element={<Standorte />} />
+            <Route path="/standorte/:slug" element={<StandortDetail />} />
+            <Route path="/leistungen" element={<Leistungen />} />
+            <Route path="/beratung" element={<Beratung />} />
+            <Route path="/strom-check" element={<StromCheck />} />
+            <Route path="/karriere" element={<Karriere />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/vertriebspartner" element={<Vertriebspartner />} />
+            <Route path="/partnershop" element={<Partnershop />} />
+            <Route path="/impressum" element={<Impressum />} />
+            <Route path="/datenschutz" element={<Datenschutz />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
