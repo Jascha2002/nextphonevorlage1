@@ -110,7 +110,7 @@ const StandortDetail = () => {
             {/* Provider logos */}
             <div>
               <h2 className="text-lg font-bold text-foreground mb-4">Unsere Partner</h2>
-              <img src="/images/provider-logos.png" alt="NextPhones Partner" className="w-full max-w-md" />
+              <img src="/images/provider-logos.png" alt="NextPhones Partner" className="w-full" />
             </div>
           </div>
 

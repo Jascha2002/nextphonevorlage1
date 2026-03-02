@@ -19,15 +19,17 @@ const StandortePreview = () => {
           <p className="text-muted-foreground">5× in Thüringen für Sie da</p>
         </motion.div>
 
-        {/* Map */}
+        {/* Map with all 5 locations */}
         <div className="rounded-lg overflow-hidden shadow-md mb-10">
           <iframe
-            title="NextPhones Standorte"
-            src="https://maps.google.com/maps?q=Meyfartstr.+19,+99084+Erfurt&t=&z=8&ie=UTF8&iwloc=&output=embed"
+            title="NextPhones Standorte Übersicht"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d320000!2d11.3!3d50.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDUxJzAwLjAiTiAxMcKwMTgnMDAuMCJF!5e0!3m2!1sde!2sde!4v1!5m2!1sde!2sde&q=Meyfartstr.+19+99084+Erfurt|Goldgasse+9+99510+Apolda|Straßburger+Platz+5+99427+Weimar|Wiesestr.+63+07548+Gera|Christian-Schmidt-Str.+12+07545+Gera"
             width="100%"
             height="350"
             style={{ border: 0 }}
             loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
             className="w-full"
           />
         </div>
