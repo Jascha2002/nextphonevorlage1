@@ -45,7 +45,7 @@ const ServicesSection = () => {
             >
               <Link
                 to={`/leistungen/${service.slug}`}
-                className="block bg-card rounded-lg overflow-hidden border shadow-sm hover:shadow-md service-card-glow transition-all h-full"
+                className="block bg-card rounded-lg overflow-hidden border-2 border-primary shadow-sm hover:shadow-md service-card-glow transition-all h-full"
               >
                 <div className="h-48 overflow-hidden">
                   <img
