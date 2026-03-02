@@ -20,7 +20,18 @@ const navLinks: NavLink[] = [
       path: `/standorte/${l.slug}`,
     })),
   },
-  { label: "Leistungen", path: "/leistungen" },
+  {
+    label: "Leistungen",
+    path: "/leistungen",
+    children: [
+      { label: "DSL & Festnetz", path: "/leistungen/dsl-festnetz" },
+      { label: "Mobilfunk", path: "/leistungen/mobilfunk" },
+      { label: "Handyservice", path: "/leistungen/handyservice" },
+      { label: "WLAN-Einrichtung", path: "/leistungen/wlan-einrichtung" },
+      { label: "VoIP-Telefonie", path: "/leistungen/voip-telefonie" },
+      { label: "Geschäftskunden", path: "/leistungen/geschaeftskunden" },
+    ],
+  },
   { label: "Vertriebspartner", path: "/vertriebspartner" },
   { label: "Partnershop", path: "https://www.handytick.de/?refid=456613", external: true },
   { label: "Karriere", path: "/karriere" },
@@ -30,7 +41,7 @@ const navLinks: NavLink[] = [
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -42,7 +53,7 @@ const Header = () => {
 
   useEffect(() => {
     setMobileOpen(false);
-    setDropdownOpen(false);
+    setDropdownOpen(null);
   }, [location.pathname]);
 
   return (
@@ -63,19 +74,19 @@ const Header = () => {
               <div
                 key={link.path}
                 className="relative"
-                onMouseEnter={() => setDropdownOpen(true)}
-                onMouseLeave={() => setDropdownOpen(false)}
+                onMouseEnter={() => setDropdownOpen(link.path)}
+                onMouseLeave={() => setDropdownOpen(null)}
               >
                 <Link
                   to={link.path}
                   className={`px-3 py-2 text-sm font-medium transition-colors hover:text-primary flex items-center gap-1 ${
-                    location.pathname.startsWith("/standorte") ? "text-primary" : "text-foreground"
+                    location.pathname.startsWith(link.path) ? "text-primary" : "text-foreground"
                   }`}
                 >
                   {link.label}
                   <ChevronDown className="h-3.5 w-3.5" />
                 </Link>
-                {dropdownOpen && (
+                {dropdownOpen === link.path && (
                   <div className="absolute top-full left-0 bg-background rounded-lg shadow-lg border py-2 min-w-[200px]">
                     {link.children.map((child) => (
                       <Link
