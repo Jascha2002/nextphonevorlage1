@@ -14,9 +14,9 @@ const Index = () => {
       <StatsBar />
       <ServicesSection />
       <WhyNextPhones />
-      <ReviewsSection />
       <StromCheckTeaser />
       <StandortePreview />
+      <ReviewsSection />
       <FoerdermittelSection />
     </>
   );
