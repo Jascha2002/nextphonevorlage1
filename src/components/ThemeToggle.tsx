@@ -23,10 +23,9 @@ const ThemeToggle = () => {
     <button
       onClick={() => setDark((d) => !d)}
       aria-label={dark ? "Zu Hellmodus wechseln" : "Zu Dunkelmodus wechseln"}
-      className="flex items-center gap-1.5 px-3 py-1.5 h-[36px] rounded-full border border-border bg-card text-foreground text-xs font-medium transition-all duration-300 ease-in-out hover:border-primary focus-visible:outline-2 focus-visible:outline-primary"
+      className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-card text-foreground transition-all duration-300 ease-in-out hover:border-primary focus-visible:outline-2 focus-visible:outline-primary"
     >
       {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-      <span>{dark ? "Hell" : "Dark"}</span>
     </button>
   );
 };
