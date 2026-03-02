@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=OpenDyslexic&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,34 +8,24 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 10%;
-
     --card: 0 0% 100%;
     --card-foreground: 0 0% 10%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 10%;
-
     --primary: 356 95% 46%;
     --primary-foreground: 0 0% 100%;
-
     --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 10%;
-
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 40%;
-
     --accent: 356 95% 46%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 0 0% 90%;
     --input: 0 0% 90%;
     --ring: 356 95% 46%;
-
     --radius: 0.5rem;
-
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 10%;
     --sidebar-primary: 356 95% 46%;
@@ -42,7 +34,6 @@
     --sidebar-accent-foreground: 0 0% 10%;
     --sidebar-border: 0 0% 90%;
     --sidebar-ring: 356 95% 46%;
-
     --brand-dark: 0 0% 10%;
     --brand-red: 356 95% 46%;
     --brand-red-hover: 356 95% 40%;
@@ -84,6 +75,12 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', sans-serif;
   }
+
+  /* Focus indicators for WCAG */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
 }
 
 @layer utilities {
@@ -121,4 +118,54 @@ html {
 /* Red glow on hover for service cards */
 .service-card-glow:hover {
   box-shadow: 0 4px 20px -4px hsl(356 95% 46% / 0.3);
+}
+
+/* High contrast mode */
+.high-contrast {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 5%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 5%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 60 100% 50%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 80%;
+  --border: 0 0% 100%;
+  --input: 0 0% 30%;
+  --brand-dark: 0 0% 0%;
+  --brand-red: 60 100% 50%;
+  --surface-warm: 0 0% 10%;
+}
+
+/* Reduce motion */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Dyslexic font */
+.dyslexic-font body,
+.dyslexic-font h1,
+.dyslexic-font h2,
+.dyslexic-font h3,
+.dyslexic-font h4,
+.dyslexic-font h5,
+.dyslexic-font h6,
+.dyslexic-font p,
+.dyslexic-font span,
+.dyslexic-font a,
+.dyslexic-font li,
+.dyslexic-font button,
+.dyslexic-font input,
+.dyslexic-font textarea,
+.dyslexic-font label {
+  font-family: 'OpenDyslexic', 'Inter', sans-serif !important;
 }
