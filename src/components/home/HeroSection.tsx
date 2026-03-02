@@ -66,10 +66,12 @@ const HeroSection = () => {
 
       {/* Ticker */}
       <div className="relative bg-foreground/80 py-3 overflow-hidden">
-        <div className="animate-ticker whitespace-nowrap flex">
-          <span className="text-primary-foreground text-sm font-medium tracking-wide">
-            {tickerText}{tickerText}
-          </span>
+        <div className="animate-ticker whitespace-nowrap inline-flex">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <span key={i} className="text-primary-foreground text-sm font-medium tracking-wide">
+              {tickerText}
+            </span>
+          ))}
         </div>
       </div>
     </section>
