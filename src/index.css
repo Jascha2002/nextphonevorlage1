@@ -107,7 +107,7 @@
   100% { transform: translateX(-50%); }
 }
 .animate-ticker {
-  animation: ticker 40s linear infinite;
+  animation: ticker 60s linear infinite;
 }
 
 /* Smooth scrolling */
