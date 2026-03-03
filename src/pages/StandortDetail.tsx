@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { locations } from "@/data/locations";
+import { regionalData } from "@/data/regionalData";
+import RegionalServiceArea from "@/components/standort/RegionalServiceArea";
 import { MapPin, Phone, Clock, Navigation, User, Briefcase, Users, Building2 } from "lucide-react";
 
 const services = [
@@ -11,6 +14,21 @@ const services = [
 const StandortDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const location = locations.find((l) => l.slug === slug);
+  const region = slug ? regionalData[slug] : undefined;
+
+  useEffect(() => {
+    if (region) {
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) {
+        meta.setAttribute("content", region.seoDescription);
+      } else {
+        const tag = document.createElement("meta");
+        tag.name = "description";
+        tag.content = region.seoDescription;
+        document.head.appendChild(tag);
+      }
+    }
+  }, [region]);
 
   if (!location) {
     return (
@@ -138,6 +156,9 @@ const StandortDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Regional service area */}
+      {region && <RegionalServiceArea data={region} />}
     </div>
   );
 };
