@@ -18,7 +18,7 @@ export const regionalData: Record<string, RegionalData> = {
     },
     umgebung: {
       label: "Umgebung & Pendlerstädte",
-      items: ["Gotha", "Sömmerda", "Arnstadt", "Weimar", "Nordhausen", "Mühlhausen", "Eisenach"],
+      items: ["Gotha", "Sömmerda", "Arnstadt", "Weimar", "Bad Berka", "Neudietendorf", "Amt Wachsenburg"],
     },
     closingText: "Egal ob du aus Ilversgehofen, Gotha oder Sömmerda kommst — NextPhones Erfurt ist gut mit Bus und Bahn erreichbar. Vereinbare jetzt einen Termin.",
     ctaLabel: "Beratung in Erfurt sichern",
@@ -33,7 +33,7 @@ export const regionalData: Record<string, RegionalData> = {
     },
     umgebung: {
       label: "Größere Städte im Einzugsgebiet",
-      items: ["Jena", "Weimar", "Naumburg", "Erfurt"],
+      items: ["Jena", "Weimar", "Naumburg", "Buttstädt", "Camburg"],
     },
     closingText: "Du wohnst in Bad Sulza, Blankenhain oder einer der umliegenden Gemeinden? NextPhones Apolda liegt direkt an der Bahnlinie Erfurt–Jena und ist schnell erreichbar.",
     ctaLabel: "Beratung in Apolda sichern",
@@ -63,7 +63,7 @@ export const regionalData: Record<string, RegionalData> = {
     },
     umgebung: {
       label: "Umgebung Ostthüringen",
-      items: ["Ronneburg", "Greiz", "Zeulenroda-Triebes", "Eisenberg", "Altenburg", "Jena", "Schleiz", "Bad Köstritz", "Hermsdorf"],
+      items: ["Ronneburg", "Greiz", "Bad Köstritz", "Hermsdorf", "Eisenberg", "Weida", "Berga/Elster", "Münchenbernsdorf", "Wünschendorf"],
     },
     closingText: "Du wohnst in Lusan, Bieblach oder kommst aus Ronneburg oder Greiz? Unser Store an der Wiesestraße ist dein nächster NextPhones Anlaufpunkt in Ostthüringen.",
     ctaLabel: "Beratung in Gera sichern",
@@ -78,7 +78,7 @@ export const regionalData: Record<string, RegionalData> = {
     },
     umgebung: {
       label: "Umgebung",
-      items: ["Ronneburg", "Greiz", "Bad Köstritz", "Zeulenroda-Triebes", "Hermsdorf", "Eisenberg", "Altenburg", "Jena", "Schleiz"],
+      items: ["Ronneburg", "Greiz", "Bad Köstritz", "Hermsdorf", "Eisenberg", "Weida", "Berga/Elster", "Münchenbernsdorf", "Wünschendorf"],
     },
     closingText: "Als zentraler Standort in der Geraer Innenstadt sind wir der ideale Ansprechpartner — ob du aus dem Stadtgebiet oder aus der Umgebung zu uns kommst.",
     ctaLabel: "Beratung in Gera Zentrum sichern",
