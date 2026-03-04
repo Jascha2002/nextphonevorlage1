@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { locations } from "@/data/locations";
 import { regionalData } from "@/data/regionalData";
+import { vorOrtData } from "@/data/vorOrtData";
 import RegionalServiceArea from "@/components/standort/RegionalServiceArea";
+import VorOrtServiceSection from "@/components/standort/VorOrtServiceSection";
 import { MapPin, Phone, Clock, Navigation, User, Briefcase, Users, Building2 } from "lucide-react";
 
 const services = [
@@ -15,6 +17,7 @@ const StandortDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const location = locations.find((l) => l.slug === slug);
   const region = slug ? regionalData[slug] : undefined;
+  const vorOrt = slug ? vorOrtData[slug] : undefined;
 
   useEffect(() => {
     if (region) {
@@ -159,6 +162,9 @@ const StandortDetail = () => {
 
       {/* Regional service area */}
       {region && <RegionalServiceArea data={region} />}
+
+      {/* Vor-Ort Service */}
+      {vorOrt && <VorOrtServiceSection data={vorOrt} />}
     </div>
   );
 };
