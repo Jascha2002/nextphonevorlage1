@@ -22,7 +22,7 @@ export const regionalData: Record<string, RegionalData> = {
     },
     closingText: "Egal ob du aus Ilversgehofen, Gotha oder Sömmerda kommst — NextPhones Erfurt ist gut mit Bus und Bahn erreichbar. Vereinbare jetzt einen Termin.",
     ctaLabel: "Beratung in Erfurt sichern",
-    seoDescription: "NextPhones Erfurt — Ihr Telekom und Vodafone Partner in Erfurt, Ilversgehofen, Daberstedt, Gotha, Sömmerda und der gesamten Region.",
+    seoDescription: "NextPhones Erfurt — Ihr Telekom und Vodafone Partner in Erfurt, Ilversgehofen, Daberstedt, Gotha, Sömmerda, Arnstadt und der gesamten Region.",
   },
   apolda: {
     headline: "NextPhones Apolda — Im Herzen des Weimarer Landes",
