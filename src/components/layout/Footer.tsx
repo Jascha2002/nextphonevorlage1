@@ -14,7 +14,7 @@ const Footer = ({ onOpenCookieSettings }: FooterProps) => {
           {/* Logo & Contact */}
           <div>
             <img src="/images/footer-logo.png" alt="NextPhones" className="h-10 mb-4" />
-            <p className="text-sm text-muted-foreground mb-3">Dein Telefonladen in der Region</p>
+            <p className="text-sm text-secondary-foreground/70 mb-3">Dein Telefonladen in der Region</p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
