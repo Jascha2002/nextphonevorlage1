@@ -45,6 +45,26 @@ const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const clickCountRef = useRef(0);
+  const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    clickCountRef.current += 1;
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+    if (clickCountRef.current >= 5) {
+      clickCountRef.current = 0;
+      navigate('/admin/login');
+      return;
+    }
+    clickTimerRef.current = setTimeout(() => {
+      if (clickCountRef.current < 5) {
+        navigate('/');
+      }
+      clickCountRef.current = 0;
+    }, 400);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
