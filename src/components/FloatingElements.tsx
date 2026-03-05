@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { MessageCircle, ArrowUp } from "lucide-react";
+import { MessageCircle, ArrowUp, Wrench } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const FloatingElements = () => {
   const [showScroll, setShowScroll] = useState(false);
+  const { adminUser } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setShowScroll(window.scrollY > 400);
@@ -13,6 +15,17 @@ const FloatingElements = () => {
 
   return (
     <>
+      {/* Admin quick-access button — only visible for logged-in admins */}
+      {adminUser && (
+        <Link
+          to="/admin"
+          title="Admin Bereich"
+          className="fixed bottom-6 left-6 z-50 bg-primary text-primary-foreground w-11 h-11 rounded-full shadow-lg hover:opacity-90 transition-all flex items-center justify-center"
+        >
+          <Wrench className="h-5 w-5" />
+        </Link>
+      )}
+
       {/* Beratung sichern sticky button */}
       <Link
         to="/beratung"
