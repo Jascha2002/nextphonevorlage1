@@ -36,21 +36,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchAdminUser = async (userId: string) => {
+  const fetchAdminUser = async (userId: string): Promise<AdminUser | null> => {
     const { data, error } = await supabase
       .from('admin_users')
       .select('*')
       .eq('id', userId)
       .eq('is_active', true)
       .maybeSingle();
-    
-    if (data && !error) {
-      setAdminUser(data as AdminUser);
-      // Update last_login
-      await supabase.from('admin_users').update({ last_login: new Date().toISOString() }).eq('id', userId);
-    } else {
-      setAdminUser(null);
+
+    if (!data || error) {
+      return null;
     }
+
+    // Update last_login
+    await supabase
+      .from('admin_users')
+      .update({ last_login: new Date().toISOString() })
+      .eq('id', userId);
+
+    return data as AdminUser;
   };
 
   useEffect(() => {
