@@ -97,6 +97,7 @@ export type Database = {
           provider: string
           show_aktionen_page: boolean
           show_homepage: boolean
+          sort_order: number
           startpreis: string | null
           status: string
           subheadline: string | null
@@ -112,6 +113,7 @@ export type Database = {
           provider: string
           show_aktionen_page?: boolean
           show_homepage?: boolean
+          sort_order?: number
           startpreis?: string | null
           status?: string
           subheadline?: string | null
@@ -127,6 +129,7 @@ export type Database = {
           provider?: string
           show_aktionen_page?: boolean
           show_homepage?: boolean
+          sort_order?: number
           startpreis?: string | null
           status?: string
           subheadline?: string | null
@@ -261,6 +264,7 @@ export type Database = {
           meta_title: string | null
           published_at: string | null
           reading_time: number | null
+          show_on_website: boolean
           slug: string
           status: string
           tags: string[] | null
@@ -278,6 +282,7 @@ export type Database = {
           meta_title?: string | null
           published_at?: string | null
           reading_time?: number | null
+          show_on_website?: boolean
           slug: string
           status?: string
           tags?: string[] | null
@@ -295,6 +300,7 @@ export type Database = {
           meta_title?: string | null
           published_at?: string | null
           reading_time?: number | null
+          show_on_website?: boolean
           slug?: string
           status?: string
           tags?: string[] | null
