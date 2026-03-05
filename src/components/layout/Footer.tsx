@@ -8,36 +8,36 @@ interface FooterProps {
 
 const Footer = ({ onOpenCookieSettings }: FooterProps) => {
   return (
-    <footer className="bg-brand-dark text-secondary border-t-2 border-brand-red" role="contentinfo">
+    <footer className="bg-brand-dark text-white border-t-2 border-brand-red" role="contentinfo">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo & Contact */}
           <div>
             <img src="/images/footer-logo.png" alt="NextPhones" className="h-10 mb-4" />
-            <p className="text-sm text-muted-foreground mb-3">Dein Telefonladen in der Region</p>
+            <p className="text-sm text-white/70 mb-3">Dein Telefonladen in der Region</p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                <span>Meyfartstr. 19, 99084 Erfurt</span>
+                <span className="text-white/80">Meyfartstr. 19, 99084 Erfurt</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:03615188706" className="hover:text-primary transition-colors">0361 5188706</a>
+                <a href="tel:03615188706" className="text-white/80 hover:text-primary transition-colors">0361 5188706</a>
               </div>
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:info@nextphones.de" className="hover:text-primary transition-colors">info@nextphones.de</a>
+                <a href="mailto:info@nextphones.de" className="text-white/80 hover:text-primary transition-colors">info@nextphones.de</a>
               </div>
             </div>
           </div>
 
           {/* Standorte */}
           <div>
-            <h4 className="font-semibold mb-4 text-primary-foreground">Standorte</h4>
+            <h4 className="font-semibold mb-4 text-white">Standorte</h4>
             <ul className="space-y-2 text-sm">
               {locations.map((loc) => (
                 <li key={loc.slug}>
-                  <Link to={`/standorte/${loc.slug}`} className="text-muted-foreground hover:text-primary transition-colors">{loc.city}</Link>
+                  <Link to={`/standorte/${loc.slug}`} className="text-white/70 hover:text-primary transition-colors">{loc.city}</Link>
                 </li>
               ))}
             </ul>
@@ -45,8 +45,8 @@ const Footer = ({ onOpenCookieSettings }: FooterProps) => {
 
           {/* Leistungen */}
           <div>
-            <h4 className="font-semibold mb-4 text-primary-foreground">Leistungen</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h4 className="font-semibold mb-4 text-white">Leistungen</h4>
+            <ul className="space-y-2 text-sm text-white/70">
               {["DSL & Festnetz", "Mobilfunk", "Handyservice", "WLAN-Einrichtung", "VoIP-Telefonie", "Geschäftskunden"].map((s) => (
                 <li key={s}>
                   <Link to="/leistungen" className="hover:text-primary transition-colors">{s}</Link>
@@ -57,8 +57,8 @@ const Footer = ({ onOpenCookieSettings }: FooterProps) => {
 
           {/* Rechtliches & Öffnungszeiten */}
           <div>
-            <h4 className="font-semibold mb-4 text-primary-foreground">Rechtliches</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground mb-6">
+            <h4 className="font-semibold mb-4 text-white">Rechtliches</h4>
+            <ul className="space-y-2 text-sm text-white/70 mb-6">
               <li><Link to="/impressum" className="hover:text-primary transition-colors">Impressum</Link></li>
               <li><Link to="/datenschutz" className="hover:text-primary transition-colors">Datenschutz</Link></li>
               <li><Link to="/agb" className="hover:text-primary transition-colors">AGB</Link></li>
@@ -69,16 +69,16 @@ const Footer = ({ onOpenCookieSettings }: FooterProps) => {
                 </button>
               </li>
             </ul>
-            <h4 className="font-semibold mb-2 text-primary-foreground text-sm">Öffnungszeiten</h4>
-            <p className="text-sm text-muted-foreground">Mo–Fr 09:00–18:00</p>
-            <p className="text-sm text-muted-foreground">Sa 10:00–14:00</p>
+            <h4 className="font-semibold mb-2 text-white text-sm">Öffnungszeiten</h4>
+            <p className="text-sm text-white/70">Mo–Fr 09:00–18:00</p>
+            <p className="text-sm text-white/70">Sa 10:00–14:00</p>
           </div>
         </div>
 
         {/* Funding logo */}
         <div className="mt-10 pt-6 border-t border-muted flex flex-col md:flex-row items-center justify-between gap-4">
           <img src="/images/funding-logo.png" alt="Gefördert durch Freistaat Thüringen" className="h-20 md:h-24" />
-          <p className="text-xs text-muted-foreground">© 2025 NextPhones | Alle Preise inkl. MwSt.</p>
+          <p className="text-xs text-white/50">© 2025 NextPhones | Alle Preise inkl. MwSt.</p>
         </div>
       </div>
     </footer>
