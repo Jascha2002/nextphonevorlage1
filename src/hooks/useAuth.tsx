@@ -36,50 +36,78 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetchAdminUser = async (userId: string) => {
+  const fetchAdminUser = async (userId: string): Promise<AdminUser | null> => {
     const { data, error } = await supabase
       .from('admin_users')
       .select('*')
       .eq('id', userId)
       .eq('is_active', true)
       .maybeSingle();
-    
-    if (data && !error) {
-      setAdminUser(data as AdminUser);
-      // Update last_login
-      await supabase.from('admin_users').update({ last_login: new Date().toISOString() }).eq('id', userId);
-    } else {
-      setAdminUser(null);
+
+    if (!data || error) {
+      return null;
     }
+
+    // Update last_login
+    await supabase
+      .from('admin_users')
+      .update({ last_login: new Date().toISOString() })
+      .eq('id', userId);
+
+    return data as AdminUser;
   };
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        setTimeout(() => fetchAdminUser(session.user.id), 0);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, nextSession) => {
+      setLoading(true);
+      setSession(nextSession);
+      setUser(nextSession?.user ?? null);
+
+      if (nextSession?.user) {
+        const nextAdminUser = await fetchAdminUser(nextSession.user.id);
+        setAdminUser(nextAdminUser);
       } else {
         setAdminUser(null);
       }
+
       setLoading(false);
     });
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        fetchAdminUser(session.user.id);
+    (async () => {
+      const { data: { session: initialSession } } = await supabase.auth.getSession();
+      setLoading(true);
+      setSession(initialSession);
+      setUser(initialSession?.user ?? null);
+
+      if (initialSession?.user) {
+        const initialAdminUser = await fetchAdminUser(initialSession.user.id);
+        setAdminUser(initialAdminUser);
+      } else {
+        setAdminUser(null);
       }
+
       setLoading(false);
-    });
+    })();
 
     return () => subscription.unsubscribe();
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) return { error: error.message };
+
+    const signedInUserId = data.user?.id;
+    if (!signedInUserId) {
+      return { error: 'Anmeldung fehlgeschlagen. Bitte erneut versuchen.' };
+    }
+
+    const admin = await fetchAdminUser(signedInUserId);
+    if (!admin) {
+      await supabase.auth.signOut();
+      return { error: 'Kein aktiver Admin-Zugang für diese E-Mail gefunden.' };
+    }
+
+    setAdminUser(admin);
     return { error: null };
   };
 
