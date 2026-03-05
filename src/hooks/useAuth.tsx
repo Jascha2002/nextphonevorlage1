@@ -58,25 +58,36 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        setTimeout(() => fetchAdminUser(session.user.id), 0);
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, nextSession) => {
+      setLoading(true);
+      setSession(nextSession);
+      setUser(nextSession?.user ?? null);
+
+      if (nextSession?.user) {
+        const nextAdminUser = await fetchAdminUser(nextSession.user.id);
+        setAdminUser(nextAdminUser);
       } else {
         setAdminUser(null);
       }
+
       setLoading(false);
     });
 
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      if (session?.user) {
-        fetchAdminUser(session.user.id);
+    (async () => {
+      const { data: { session: initialSession } } = await supabase.auth.getSession();
+      setLoading(true);
+      setSession(initialSession);
+      setUser(initialSession?.user ?? null);
+
+      if (initialSession?.user) {
+        const initialAdminUser = await fetchAdminUser(initialSession.user.id);
+        setAdminUser(initialAdminUser);
+      } else {
+        setAdminUser(null);
       }
+
       setLoading(false);
-    });
+    })();
 
     return () => subscription.unsubscribe();
   }, []);
