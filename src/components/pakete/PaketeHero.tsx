@@ -14,7 +14,7 @@ export default function PaketeHero({ onScrollKonfigurator, onScrollPakete }: Pro
           animate={{ opacity: 1, y: 0 }}
           className="inline-block px-4 py-1.5 bg-primary/10 border border-primary/30 text-primary rounded-full text-sm font-medium mb-6"
         >
-          🎁 Kombi-Pakete
+          Kombi-Pakete
         </motion.span>
         <motion.h1
           initial={{ opacity: 0, y: 20 }}

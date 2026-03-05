@@ -75,7 +75,7 @@ export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComp
             <div className="h-16 w-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
               <Check className="h-8 w-8 text-green-600" />
             </div>
-            <h3 className="text-2xl font-bold text-card-foreground mb-2">Anfrage eingegangen! ✓</h3>
+            <h3 className="text-2xl font-bold text-card-foreground mb-2">Anfrage eingegangen!</h3>
             <p className="text-muted-foreground mb-4">Wir melden uns innerhalb von 24 Stunden telefonisch bei dir.</p>
             <a href="tel:03615188706" className="inline-flex items-center gap-2 text-primary font-semibold">
               <Phone className="h-5 w-5" /> 0361 5188706
@@ -177,16 +177,16 @@ export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComp
               <h4 className="font-bold text-card-foreground mb-4">Was passiert nach deiner Anfrage?</h4>
               <div className="space-y-4">
                 {[
-                  { icon: '📞', text: 'Wir rufen dich innerhalb von 24 Stunden an' },
-                  { icon: '💬', text: 'Wir besprechen deine Wünsche und passen das Paket an' },
-                  { icon: '📍', text: 'Termin in deiner Wunschfiliale' },
-                  { icon: '✅', text: 'Alles wird eingerichtet — du lehnst dich zurück' },
+                  { step: 'Wir rufen dich innerhalb von 24 Stunden an' },
+                  { step: 'Wir besprechen deine Wünsche und passen das Paket an' },
+                  { step: 'Termin in deiner Wunschfiliale' },
+                  { step: 'Alles wird eingerichtet — du lehnst dich zurück' },
                 ].map((s, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="text-xl">{s.icon}</span>
+                    <span className="h-6 w-6 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center shrink-0">{i + 1}</span>
                     <div>
                       <span className="text-xs text-muted-foreground">Schritt {i + 1}</span>
-                      <p className="text-sm text-card-foreground">{s.text}</p>
+                      <p className="text-sm text-card-foreground">{s.step}</p>
                     </div>
                   </div>
                 ))}
@@ -194,7 +194,7 @@ export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComp
             </div>
 
             <div className="bg-card border-2 border-primary/30 rounded-lg p-6">
-              <h4 className="font-bold text-card-foreground mb-3">ℹ️ Wichtige Hinweise:</h4>
+              <h4 className="font-bold text-card-foreground mb-3">Wichtige Hinweise:</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Alle Preise sind Richtwerte</li>
                 <li>• Verschiedene Komponenten können unterschiedliche Laufzeiten haben</li>

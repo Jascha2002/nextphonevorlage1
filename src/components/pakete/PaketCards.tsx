@@ -14,12 +14,11 @@ function PaketCard({ paket, onAnfrage }: { paket: PaketData; onAnfrage: (id: str
     <div className="bg-card border-2 border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors">
       <div className="p-6">
         <div className="flex items-start justify-between mb-3">
-          <span className="text-3xl">{paket.icon}</span>
+          <h3 className="text-xl font-bold text-card-foreground">{paket.title}</h3>
           <span className={`text-xs font-semibold px-3 py-1 rounded-full ${paket.badgeColor || 'bg-primary/10 text-primary'}`}>
             {paket.badge}
           </span>
         </div>
-        <h3 className="text-xl font-bold text-card-foreground mb-1">{paket.title}</h3>
         <p className="text-sm text-muted-foreground mb-4">{paket.subtitle}</p>
 
         <div className="space-y-2 mb-4">
@@ -120,7 +119,7 @@ export default function PaketCards({ onAnfrage }: Props) {
 
         <div className="bg-muted border border-border rounded-lg p-6 text-center max-w-3xl mx-auto">
           <p className="text-sm text-muted-foreground leading-relaxed">
-            ℹ️ Alle Preisangaben sind Richtwerte ab-Preise. Die genauen Kosten hängen von deiner Wahl der Tarife, Geräte und Anbieter ab.
+            Alle Preisangaben sind Richtwerte ab-Preise. Die genauen Kosten hängen von deiner Wahl der Tarife, Geräte und Anbieter ab.
             Verschiedene Komponenten können unterschiedliche Vertragslaufzeiten haben.
             Unsere Berater erstellen dir ein individuelles Angebot — kostenlos und ohne Verpflichtung in allen 5 Filialen.
           </p>
