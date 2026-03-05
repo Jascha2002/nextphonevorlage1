@@ -96,7 +96,7 @@ const TarifRechnerQuiz = () => {
   return (
     <section className="py-20 bg-primary">
       <div className="container mx-auto px-4 max-w-3xl text-center">
-        <span className="inline-block bg-white text-primary text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+        <span className="inline-block bg-card text-primary text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
           ⚡ Kostenloser Tarifcheck
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Welcher Tarif passt zu dir?</h2>
@@ -132,7 +132,7 @@ const TarifRechnerQuiz = () => {
                   <button
                     key={opt.value}
                     onClick={() => selectOption(opt.value)}
-                    className="bg-white rounded-xl p-5 text-left hover:ring-2 hover:ring-white/50 hover:scale-[1.02] transition-all flex items-center gap-3 group"
+                    className="bg-card rounded-xl p-5 text-left hover:ring-2 hover:ring-white/50 hover:scale-[1.02] transition-all flex items-center gap-3 group"
                   >
                     {opt.emoji && <span className="text-2xl">{opt.emoji}</span>}
                     <span className="font-semibold text-primary">{opt.label}</span>
@@ -146,15 +146,15 @@ const TarifRechnerQuiz = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.35 }}
-              className="bg-white rounded-2xl p-8 max-w-md mx-auto"
+              className="bg-card text-card-foreground rounded-2xl p-8 max-w-md mx-auto"
             >
               <CheckCircle2 className="h-14 w-14 text-primary mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-primary mb-1">Deine Empfehlung</h3>
               <p className="text-muted-foreground text-sm mb-4">Unser Tipp für dich:</p>
-              <p className="text-xl font-bold text-foreground mb-4">{result!.provider}</p>
+              <p className="text-xl font-bold text-card-foreground mb-4">{result!.provider}</p>
               <ul className="space-y-2 mb-6 text-left">
                 {result!.bullets.map((b) => (
-                  <li key={b} className="flex items-center gap-2 text-sm text-foreground">
+                  <li key={b} className="flex items-center gap-2 text-sm text-card-foreground">
                     <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
                     {b}
                   </li>
@@ -169,7 +169,7 @@ const TarifRechnerQuiz = () => {
                 </Link>
                 <button
                   onClick={reset}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-border text-foreground font-medium rounded-lg hover:bg-secondary transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-border text-card-foreground font-medium rounded-lg hover:bg-secondary transition-colors"
                 >
                   <RotateCcw className="h-4 w-4" /> Nochmal starten
                 </button>
