@@ -62,7 +62,6 @@ export default function AdminPakete() {
               <Card key={p.id}>
                 <CardContent className="p-5">
                   <div className="flex items-start justify-between mb-3">
-                    <span className="text-3xl">{p.icon}</span>
                     <Badge variant="secondary">{p.badge}</Badge>
                   </div>
                   <h3 className="font-bold text-lg">{p.title}</h3>
