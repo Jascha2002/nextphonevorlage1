@@ -1,6 +1,5 @@
 export interface PaketData {
   id: string;
-  icon: string;
   badge: string;
   badgeColor?: string;
   title: string;
@@ -17,7 +16,6 @@ export interface PaketData {
 export const pakete: PaketData[] = [
   {
     id: 'neu-hier',
-    icon: '🏠',
     badge: 'Beliebt',
     title: 'Neu hier',
     subtitle: 'Perfekt für alle die neu in die Stadt ziehen',
@@ -36,7 +34,6 @@ export const pakete: PaketData[] = [
   },
   {
     id: 'digital-starter',
-    icon: '📱',
     badge: 'Für Schüler & Studenten',
     title: 'Digital Starter',
     subtitle: 'Alles was du für Schule, Studium und Freizeit brauchst',
@@ -55,8 +52,7 @@ export const pakete: PaketData[] = [
   },
   {
     id: 'familie-komplett',
-    icon: '👨‍👩‍👧',
-    badge: 'Bestseller 🔥',
+    badge: 'Bestseller',
     badgeColor: 'bg-orange-500',
     title: 'Familie Komplett',
     subtitle: 'Internet und Mobilfunk für die ganze Familie',
@@ -75,7 +71,6 @@ export const pakete: PaketData[] = [
   },
   {
     id: 'home-office',
-    icon: '💼',
     badge: 'Für Selbstständige',
     title: 'Home Office',
     subtitle: 'Alles für produktives Arbeiten von zu Hause',
@@ -94,7 +89,6 @@ export const pakete: PaketData[] = [
   },
   {
     id: 'mobility-bundle',
-    icon: '🛴',
     badge: 'Urban & Mobil',
     title: 'Mobility Bundle',
     subtitle: 'Mobilfunk und Mobilität — für alle die unterwegs sind',
@@ -113,7 +107,6 @@ export const pakete: PaketData[] = [
   },
   {
     id: 'entertainment',
-    icon: '🎬',
     badge: 'Für Unterhaltung',
     title: 'Entertainment',
     subtitle: 'Internet, Mobilfunk und die beste Unterhaltung',
@@ -133,14 +126,14 @@ export const pakete: PaketData[] = [
 ];
 
 export const komponenten = [
-  { id: 'mobilfunk', icon: '📱', label: 'Mobilfunk + Smartphone', sub: 'Vertrag + Wunschhandy' },
-  { id: 'internet', icon: '🌐', label: 'Internet (DSL/Glasfaser)', sub: 'Für zu Hause' },
-  { id: 'tablet', icon: '📲', label: 'Tablet', sub: 'Optional dazu', badge: 'Optional' },
-  { id: 'tv', icon: '📺', label: 'TV & Streaming', sub: 'Sky, Netflix & Co.', badge: 'Optional' },
-  { id: 'festnetz', icon: '☎️', label: 'Festnetz / VoIP', sub: 'Für Zuhause oder Büro' },
-  { id: 'escooter', icon: '🛴', label: 'E-Scooter', sub: 'Über Partnerbetrieb', badge: 'Partneranfrage' },
-  { id: 'geraeteschutz', icon: '🛡️', label: 'Geräteschutz', sub: 'Wertgarantie für deine Geräte' },
-  { id: 'alles', icon: '📦', label: 'Alles inklusive', sub: 'Ich möchte eine Komplettlösung' },
+  { id: 'mobilfunk', label: 'Mobilfunk + Smartphone', sub: 'Vertrag + Wunschhandy' },
+  { id: 'internet', label: 'Internet (DSL/Glasfaser)', sub: 'Für zu Hause' },
+  { id: 'tablet', label: 'Tablet', sub: 'Optional dazu', badge: 'Optional' },
+  { id: 'tv', label: 'TV & Streaming', sub: 'Sky, Netflix & Co.', badge: 'Optional' },
+  { id: 'festnetz', label: 'Festnetz / VoIP', sub: 'Für Zuhause oder Büro' },
+  { id: 'escooter', label: 'E-Scooter', sub: 'Über Partnerbetrieb', badge: 'Partneranfrage' },
+  { id: 'geraeteschutz', label: 'Geräteschutz', sub: 'Wertgarantie für deine Geräte' },
+  { id: 'alles', label: 'Alles inklusive', sub: 'Ich möchte eine Komplettlösung' },
 ];
 
 export const priceMap: Record<string, number> = {

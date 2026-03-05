@@ -2,15 +2,18 @@ import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { komponenten, priceMap } from '@/data/paketeData';
+import konfigEinzelperson from '@/assets/konfig-einzelperson.jpg';
+import konfigFamilie from '@/assets/konfig-familie.jpg';
+import konfigUnternehmen from '@/assets/konfig-unternehmen.jpg';
 
 interface Props {
   onSubmit: (config: { target: string; components: string[]; persons: number }) => void;
 }
 
 const targets = [
-  { id: 'mich', icon: '👤', label: 'Für mich', sub: 'Einzelperson' },
-  { id: 'familie', icon: '👨‍👩‍👧', label: 'Für meine Familie', sub: '2-5 Personen' },
-  { id: 'unternehmen', icon: '💼', label: 'Für mein Unternehmen', sub: 'Geschäftskunden' },
+  { id: 'mich', image: konfigEinzelperson, label: 'Für mich', sub: 'Einzelperson' },
+  { id: 'familie', image: konfigFamilie, label: 'Für meine Familie', sub: '2-5 Personen' },
+  { id: 'unternehmen', image: konfigUnternehmen, label: 'Für mein Unternehmen', sub: 'Geschäftskunden' },
 ];
 
 const personOptions = ['1 Person', '2 Personen', '3 Personen', '4+ Personen'];
@@ -70,7 +73,7 @@ export default function BundleKonfigurator({ onSubmit }: Props) {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-1.5 bg-primary/10 border border-primary/30 text-primary rounded-full text-sm font-medium mb-4">
-            ⚡ Konfigurator
+            Konfigurator
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">Stell dein Paket selbst zusammen</h2>
           <p className="text-muted-foreground max-w-xl mx-auto">Wähle was du brauchst — wir erstellen dir ein maßgeschneidertes Angebot.</p>
@@ -97,12 +100,15 @@ export default function BundleKonfigurator({ onSubmit }: Props) {
                     <button
                       key={t.id}
                       onClick={() => setTarget(t.id)}
-                      className={`p-6 rounded-lg border-2 text-left transition-all ${target === t.id ? 'border-primary bg-primary/5' : 'border-border bg-card hover:border-primary/30'}`}
+                      className={`relative rounded-lg border-2 overflow-hidden text-left transition-all h-48 ${target === t.id ? 'border-primary ring-2 ring-primary/30' : 'border-border hover:border-primary/30'}`}
                     >
-                      <span className="text-3xl block mb-2">{t.icon}</span>
-                      <span className="font-semibold text-card-foreground block">{t.label}</span>
-                      <span className="text-sm text-muted-foreground">{t.sub}</span>
-                      {target === t.id && <Check className="h-5 w-5 text-primary mt-2" />}
+                      <img src={t.image} alt={t.label} className="absolute inset-0 w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+                      <div className="relative h-full flex flex-col justify-end p-4">
+                        <span className="font-semibold text-white block">{t.label}</span>
+                        <span className="text-sm text-white/80">{t.sub}</span>
+                        {target === t.id && <Check className="absolute top-3 right-3 h-5 w-5 text-primary" />}
+                      </div>
                     </button>
                   ))}
                 </div>
@@ -122,7 +128,6 @@ export default function BundleKonfigurator({ onSubmit }: Props) {
                         onClick={() => toggleComponent(k.id)}
                         className={`p-4 rounded-lg border-2 text-left transition-all flex items-start gap-3 ${active ? 'border-primary bg-primary text-white' : 'border-border bg-card hover:border-primary/30'}`}
                       >
-                        <span className="text-2xl">{k.icon}</span>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
                             <span className={`font-semibold text-sm ${active ? 'text-white' : 'text-card-foreground'}`}>{k.label}</span>
