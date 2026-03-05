@@ -121,6 +121,21 @@ export default function AdminEinstellungen() {
     },
   });
 
+  const deleteAdmin = useMutation({
+    mutationFn: async (userId: string) => {
+      const { data, error } = await supabase.functions.invoke('delete-admin-user', {
+        body: { user_id: userId },
+      });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['admin-users-list'] });
+      toast.success('Admin-Konto gelöscht');
+    },
+    onError: (e: any) => toast.error(e.message || 'Fehler beim Löschen'),
+  });
+
   const allPasswordMet = passwordRequirements.every(r => r.test(newPassword));
 
   const isRegistered = (email: string) => admins.some(a => a.email.toLowerCase() === email.toLowerCase());
