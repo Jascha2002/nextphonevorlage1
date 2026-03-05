@@ -58,36 +58,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
+    let initialLoadDone = false;
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, nextSession) => {
-      setLoading(true);
       setSession(nextSession);
       setUser(nextSession?.user ?? null);
 
       if (nextSession?.user) {
-        const nextAdminUser = await fetchAdminUser(nextSession.user.id);
-        setAdminUser(nextAdminUser);
+        const nextAdmin = await fetchAdminUser(nextSession.user.id);
+        setAdminUser(nextAdmin);
       } else {
         setAdminUser(null);
       }
 
-      setLoading(false);
+      if (!initialLoadDone) {
+        initialLoadDone = true;
+        setLoading(false);
+      }
     });
 
-    (async () => {
-      const { data: { session: initialSession } } = await supabase.auth.getSession();
-      setLoading(true);
+    supabase.auth.getSession().then(async ({ data: { session: initialSession } }) => {
       setSession(initialSession);
       setUser(initialSession?.user ?? null);
 
       if (initialSession?.user) {
-        const initialAdminUser = await fetchAdminUser(initialSession.user.id);
-        setAdminUser(initialAdminUser);
-      } else {
-        setAdminUser(null);
+        const initialAdmin = await fetchAdminUser(initialSession.user.id);
+        setAdminUser(initialAdmin);
       }
 
+      initialLoadDone = true;
       setLoading(false);
-    })();
+    });
 
     return () => subscription.unsubscribe();
   }, []);
