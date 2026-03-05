@@ -77,7 +77,7 @@ const Footer = ({ onOpenCookieSettings }: FooterProps) => {
 
         {/* Funding logo */}
         <div className="mt-10 pt-6 border-t border-muted flex flex-col md:flex-row items-center justify-between gap-4">
-          <img src="/images/funding-logo.png" alt="Gefördert durch Freistaat Thüringen" className="h-20 md:h-24" />
+          <img src="/images/funding-logo.png" alt="Gefördert durch Freistaat Thüringen" className="h-20 md:h-24 dark:brightness-0 dark:invert" />
           <p className="text-xs text-white/50">© 2025 NextPhones | Alle Preise inkl. MwSt.</p>
         </div>
       </div>
