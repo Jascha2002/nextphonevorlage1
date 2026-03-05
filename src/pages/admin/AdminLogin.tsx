@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import { Button } from '@/components/ui/button';
@@ -14,25 +14,19 @@ export default function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { signIn, adminUser, user } = useAuth();
+  const { signIn } = useAuth();
   const navigate = useNavigate();
-
-  // Redirect when adminUser is set (after signIn or on page load with existing session)
-  useEffect(() => {
-    if (user && adminUser) {
-      navigate('/admin', { replace: true });
-    }
-  }, [user, adminUser, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     const { error } = await signIn(email, password);
+    setLoading(false);
     if (error) {
       toast.error(error);
-      setLoading(false);
+    } else {
+      navigate('/admin', { replace: true });
     }
-    // On success, onAuthStateChange will set adminUser, triggering the useEffect redirect
   };
 
   return (
