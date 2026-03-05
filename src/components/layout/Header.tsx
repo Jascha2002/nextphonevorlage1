@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { locations } from "@/data/locations";
 import ThemeToggle from "@/components/ThemeToggle";
@@ -45,6 +45,26 @@ const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const clickCountRef = useRef(0);
+  const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    clickCountRef.current += 1;
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+    if (clickCountRef.current >= 5) {
+      clickCountRef.current = 0;
+      navigate('/admin/login');
+      return;
+    }
+    clickTimerRef.current = setTimeout(() => {
+      if (clickCountRef.current < 5) {
+        navigate('/');
+      }
+      clickCountRef.current = 0;
+    }, 400);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -64,9 +84,9 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto h-full flex items-center justify-between px-4">
-        <Link to="/" className="flex-shrink-0">
-          <img src="/images/nextphones-logo.png" alt="NextPhones Logo" className="h-14 md:h-16" />
-        </Link>
+        <a href="/" onClick={handleLogoClick} className="flex-shrink-0 cursor-pointer select-none">
+          <img src="/images/nextphones-logo.png" alt="NextPhones Logo" className="h-14 md:h-16" draggable={false} />
+        </a>
 
         {/* Desktop nav */}
         <nav aria-label="Hauptnavigation" className="hidden lg:flex items-center gap-1">
