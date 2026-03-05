@@ -25,7 +25,7 @@ export default function AdminLogin() {
     if (error) {
       toast.error(error);
     } else {
-      navigate('/admin');
+      navigate('/admin', { replace: true });
     }
   };
 
