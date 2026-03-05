@@ -37,9 +37,8 @@ const PartnerLogosCarousel = () => {
         </p>
       </div>
 
-      <div className="space-y-4 mb-8">
+      <div className="mb-8">
         <InfiniteRow direction="left" />
-        <InfiniteRow direction="right" />
       </div>
 
       <div className="container mx-auto px-4 text-center">
