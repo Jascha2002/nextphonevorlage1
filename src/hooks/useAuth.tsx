@@ -93,8 +93,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) return { error: error.message };
+
+    const signedInUserId = data.user?.id;
+    if (!signedInUserId) {
+      return { error: 'Anmeldung fehlgeschlagen. Bitte erneut versuchen.' };
+    }
+
+    const admin = await fetchAdminUser(signedInUserId);
+    if (!admin) {
+      await supabase.auth.signOut();
+      return { error: 'Kein aktiver Admin-Zugang für diese E-Mail gefunden.' };
+    }
+
+    setAdminUser(admin);
     return { error: null };
   };
 
