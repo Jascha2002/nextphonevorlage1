@@ -33,6 +33,7 @@ const navLinks: NavLink[] = [
       { label: "Geschäftskunden", path: "/leistungen/geschaeftskunden" },
     ],
   },
+  { label: "Pakete", path: "/pakete" },
   { label: "Vertriebspartner", path: "/vertriebspartner" },
   { label: "Partnershop", path: "https://www.handytick.de/?refid=456613", external: true },
   { label: "Karriere", path: "/karriere" },

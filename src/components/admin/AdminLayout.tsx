@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import {
   LayoutDashboard, FileText, Flame, Star, Users, MapPin,
-  Bell, Settings, LogOut, ChevronLeft, ChevronRight, ExternalLink
+  Bell, Settings, LogOut, ChevronLeft, ChevronRight, ExternalLink, Package
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -16,6 +16,7 @@ const navItems = [
   { label: 'Bewertungsmanager', icon: Star, path: '/admin/bewertungen' },
   { label: 'Team Manager', icon: Users, path: '/admin/team' },
   { label: 'Standorte', icon: MapPin, path: '/admin/standorte' },
+  { label: 'Pakete Manager', icon: Package, path: '/admin/pakete' },
   { label: 'Benachrichtigungen', icon: Bell, path: '/admin/benachrichtigungen' },
   { label: 'Einstellungen', icon: Settings, path: '/admin/einstellungen' },
 ];
