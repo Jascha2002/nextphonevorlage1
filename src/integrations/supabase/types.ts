@@ -384,6 +384,51 @@ export type Database = {
           },
         ]
       }
+      paket_anfragen: {
+        Row: {
+          anmerkungen: string | null
+          anzahl_personen: number | null
+          created_at: string
+          email: string | null
+          id: string
+          komponenten: string[] | null
+          nachname: string
+          paket: string
+          standort: string | null
+          status: string
+          telefon: string | null
+          vorname: string
+        }
+        Insert: {
+          anmerkungen?: string | null
+          anzahl_personen?: number | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          komponenten?: string[] | null
+          nachname: string
+          paket: string
+          standort?: string | null
+          status?: string
+          telefon?: string | null
+          vorname: string
+        }
+        Update: {
+          anmerkungen?: string | null
+          anzahl_personen?: number | null
+          created_at?: string
+          email?: string | null
+          id?: string
+          komponenten?: string[] | null
+          nachname?: string
+          paket?: string
+          standort?: string | null
+          status?: string
+          telefon?: string | null
+          vorname?: string
+        }
+        Relationships: []
+      }
       sonder_oeffnungszeiten: {
         Row: {
           close_time: string | null
