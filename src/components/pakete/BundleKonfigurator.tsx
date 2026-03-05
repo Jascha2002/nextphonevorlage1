@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { komponenten, priceMap } from '@/data/paketeData';

@@ -1,5 +1,4 @@
 import { useRef, useState, useCallback } from 'react';
-import { Helmet } from 'react-helmet-async';
 import PaketeHero from '@/components/pakete/PaketeHero';
 import VorteileBar from '@/components/pakete/VorteileBar';
 import PaketCards from '@/components/pakete/PaketCards';

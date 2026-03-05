@@ -26,6 +26,7 @@ import VodafoneGigaMobil from "./pages/blog/VodafoneGigaMobil";
 import TelekomPreiserhoehung from "./pages/blog/TelekomPreiserhoehung";
 import SamsungGalaxyS26 from "./pages/blog/SamsungGalaxyS26";
 import Vertriebspartner from "./pages/Vertriebspartner";
+import Pakete from "./pages/Pakete";
 import TarifRechner from "./pages/TarifRechner";
 import Impressum from "./pages/Impressum";
 import Datenschutz from "./pages/Datenschutz";
@@ -44,6 +45,7 @@ import AdminTeam from "./pages/admin/AdminTeam";
 import AdminStandorte from "./pages/admin/AdminStandorte";
 import AdminBenachrichtigungen from "./pages/admin/AdminBenachrichtigungen";
 import AdminEinstellungen from "./pages/admin/AdminEinstellungen";
+import AdminPakete from "./pages/admin/AdminPakete";
 
 const queryClient = new QueryClient();
 
@@ -80,6 +82,7 @@ const App = () => (
             <Route path="/blog/vodafone-gigamobil-rabatt" element={<Layout><VodafoneGigaMobil /></Layout>} />
             <Route path="/blog/telekom-preiserhoehung-optionen" element={<Layout><TelekomPreiserhoehung /></Layout>} />
             <Route path="/blog/samsung-galaxy-s26-angebot" element={<Layout><SamsungGalaxyS26 /></Layout>} />
+            <Route path="/pakete" element={<Layout><Pakete /></Layout>} />
             <Route path="/vertriebspartner" element={<Layout><Vertriebspartner /></Layout>} />
             <Route path="/tarif-rechner" element={<Layout><TarifRechner /></Layout>} />
             <Route path="/impressum" element={<Layout><Impressum /></Layout>} />
@@ -102,6 +105,7 @@ const App = () => (
             <Route path="/admin/standorte" element={<AdminRoute><AdminStandorte /></AdminRoute>} />
             <Route path="/admin/benachrichtigungen" element={<AdminRoute><AdminBenachrichtigungen /></AdminRoute>} />
             <Route path="/admin/einstellungen" element={<AdminRoute><AdminEinstellungen /></AdminRoute>} />
+            <Route path="/admin/pakete" element={<AdminRoute><AdminPakete /></AdminRoute>} />
 
             <Route path="*" element={<Layout><NotFound /></Layout>} />
           </Routes>
