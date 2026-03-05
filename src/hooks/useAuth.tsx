@@ -61,11 +61,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     let initialLoadDone = false;
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, nextSession) => {
+      console.log('[AUTH] onAuthStateChange:', _event, nextSession?.user?.email);
       setSession(nextSession);
       setUser(nextSession?.user ?? null);
 
       if (nextSession?.user) {
+        console.log('[AUTH] Fetching admin user for:', nextSession.user.id);
         const nextAdmin = await fetchAdminUser(nextSession.user.id);
+        console.log('[AUTH] Admin user result:', nextAdmin);
         setAdminUser(nextAdmin);
       } else {
         setAdminUser(null);
