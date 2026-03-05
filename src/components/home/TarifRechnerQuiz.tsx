@@ -96,7 +96,7 @@ const TarifRechnerQuiz = () => {
   return (
     <section className="py-20 bg-primary">
       <div className="container mx-auto px-4 max-w-3xl text-center">
-        <span className="inline-block bg-white text-primary text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
+        <span className="inline-block bg-card text-primary text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
           ⚡ Kostenloser Tarifcheck
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Welcher Tarif passt zu dir?</h2>
@@ -132,7 +132,7 @@ const TarifRechnerQuiz = () => {
                   <button
                     key={opt.value}
                     onClick={() => selectOption(opt.value)}
-                    className="bg-white rounded-xl p-5 text-left hover:ring-2 hover:ring-white/50 hover:scale-[1.02] transition-all flex items-center gap-3 group"
+                    className="bg-card rounded-xl p-5 text-left hover:ring-2 hover:ring-white/50 hover:scale-[1.02] transition-all flex items-center gap-3 group"
                   >
                     {opt.emoji && <span className="text-2xl">{opt.emoji}</span>}
                     <span className="font-semibold text-primary">{opt.label}</span>
