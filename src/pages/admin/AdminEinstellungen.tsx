@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Trash2, Shield, Users, ClipboardList, Download, Eye, EyeOff, Check, X } from 'lucide-react';
 import { toast } from 'sonner';
@@ -120,6 +119,21 @@ export default function AdminEinstellungen() {
       queryClient.invalidateQueries({ queryKey: ['admin-users-list'] });
       toast.success('Status aktualisiert');
     },
+  });
+
+  const deleteAdmin = useMutation({
+    mutationFn: async (userId: string) => {
+      const { data, error } = await supabase.functions.invoke('delete-admin-user', {
+        body: { user_id: userId },
+      });
+      if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['admin-users-list'] });
+      toast.success('Admin-Konto gelöscht');
+    },
+    onError: (e: any) => toast.error(e.message || 'Fehler beim Löschen'),
   });
 
   const allPasswordMet = passwordRequirements.every(r => r.test(newPassword));
@@ -289,11 +303,25 @@ export default function AdminEinstellungen() {
                               {a.is_active ? 'Aktiv' : 'Deaktiviert'}
                             </Badge>
                           </td>
-                          <td className="py-3 text-right">
+                          <td className="py-3 text-right flex items-center justify-end gap-1">
                             {a.id !== adminUser?.id && (
-                              <Button variant="ghost" size="sm" onClick={() => toggleAdminActive.mutate({ id: a.id, is_active: !a.is_active })}>
-                                {a.is_active ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                              </Button>
+                              <>
+                                <Button variant="ghost" size="sm" onClick={() => toggleAdminActive.mutate({ id: a.id, is_active: !a.is_active })}>
+                                  {a.is_active ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-destructive hover:text-destructive"
+                                  onClick={() => {
+                                    if (window.confirm(`Admin-Konto "${a.name}" (${a.email}) wirklich endgültig löschen?`)) {
+                                      deleteAdmin.mutate(a.id);
+                                    }
+                                  }}
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              </>
                             )}
                           </td>
                         </tr>

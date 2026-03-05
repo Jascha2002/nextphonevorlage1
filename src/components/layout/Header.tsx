@@ -53,13 +53,13 @@ const Header = () => {
     e.preventDefault();
     clickCountRef.current += 1;
     if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
-    if (clickCountRef.current >= 5) {
+    if (clickCountRef.current >= 3) {
       clickCountRef.current = 0;
       navigate('/admin/login');
       return;
     }
     clickTimerRef.current = setTimeout(() => {
-      if (clickCountRef.current < 5) {
+      if (clickCountRef.current < 3) {
         navigate('/');
       }
       clickCountRef.current = 0;
