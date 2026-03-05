@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/useAuth';
 import {
   LayoutDashboard, FileText, Flame, Star, Users, MapPin,
-  Bell, Settings, LogOut, ChevronLeft, ChevronRight
+  Bell, Settings, LogOut, ChevronLeft, ChevronRight, ExternalLink
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -79,6 +79,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <Badge className={cn("text-xs mt-1", roleBadgeColor)}>{roleLabel}</Badge>
             </div>
           )}
+          <a
+            href="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Website in neuem Tab öffnen — du bleibst eingeloggt"
+            className="flex items-center gap-2 w-full px-3 py-2 mb-2 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/10 transition-colors border-t border-white/5 pt-3"
+          >
+            <ExternalLink className="h-4 w-4 shrink-0" />
+            {!collapsed && "Zur Website"}
+          </a>
           <Button
             variant="ghost"
             size="sm"
