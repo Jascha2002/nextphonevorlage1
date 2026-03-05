@@ -303,11 +303,25 @@ export default function AdminEinstellungen() {
                               {a.is_active ? 'Aktiv' : 'Deaktiviert'}
                             </Badge>
                           </td>
-                          <td className="py-3 text-right">
+                          <td className="py-3 text-right flex items-center justify-end gap-1">
                             {a.id !== adminUser?.id && (
-                              <Button variant="ghost" size="sm" onClick={() => toggleAdminActive.mutate({ id: a.id, is_active: !a.is_active })}>
-                                {a.is_active ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                              </Button>
+                              <>
+                                <Button variant="ghost" size="sm" onClick={() => toggleAdminActive.mutate({ id: a.id, is_active: !a.is_active })}>
+                                  {a.is_active ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                </Button>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-destructive hover:text-destructive"
+                                  onClick={() => {
+                                    if (window.confirm(`Admin-Konto "${a.name}" (${a.email}) wirklich endgültig löschen?`)) {
+                                      deleteAdmin.mutate(a.id);
+                                    }
+                                  }}
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              </>
                             )}
                           </td>
                         </tr>
