@@ -84,9 +84,9 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto h-full flex items-center justify-between px-4">
-        <Link to="/" className="flex-shrink-0">
-          <img src="/images/nextphones-logo.png" alt="NextPhones Logo" className="h-14 md:h-16" />
-        </Link>
+        <a href="/" onClick={handleLogoClick} className="flex-shrink-0 cursor-pointer select-none">
+          <img src="/images/nextphones-logo.png" alt="NextPhones Logo" className="h-14 md:h-16" draggable={false} />
+        </a>
 
         {/* Desktop nav */}
         <nav aria-label="Hauptnavigation" className="hidden lg:flex items-center gap-1">
