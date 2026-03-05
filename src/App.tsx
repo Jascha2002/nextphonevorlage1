@@ -4,6 +4,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import { AuthProvider } from "@/hooks/useAuth";
+import ProtectedRoute from "@/components/admin/ProtectedRoute";
+import AdminLayout from "@/components/admin/AdminLayout";
 import Index from "./pages/Index";
 import Standorte from "./pages/Standorte";
 import StandortDetail from "./pages/StandortDetail";
@@ -29,46 +32,82 @@ import Datenschutz from "./pages/Datenschutz";
 import Agb from "./pages/Agb";
 import Barrierefreiheit from "./pages/Barrierefreiheit";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminRegister from "./pages/admin/AdminRegister";
+import AdminForgotPassword from "./pages/admin/AdminForgotPassword";
+import AdminResetPassword from "./pages/admin/AdminResetPassword";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminBlog from "./pages/admin/AdminBlog";
+import AdminAktionen from "./pages/admin/AdminAktionen";
+import AdminBewertungen from "./pages/admin/AdminBewertungen";
+import AdminTeam from "./pages/admin/AdminTeam";
+import AdminStandorte from "./pages/admin/AdminStandorte";
+import AdminBenachrichtigungen from "./pages/admin/AdminBenachrichtigungen";
+import AdminEinstellungen from "./pages/admin/AdminEinstellungen";
 
 const queryClient = new QueryClient();
 
+const AdminRoute = ({ children }: { children: React.ReactNode }) => (
+  <ProtectedRoute>
+    <AdminLayout>{children}</AdminLayout>
+  </ProtectedRoute>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Layout>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/standorte" element={<Standorte />} />
-            <Route path="/standorte/:slug" element={<StandortDetail />} />
-            <Route path="/leistungen" element={<Leistungen />} />
-            <Route path="/leistungen/dsl-festnetz" element={<DslFestnetz />} />
-            <Route path="/leistungen/mobilfunk" element={<Mobilfunk />} />
-            <Route path="/leistungen/handyservice" element={<Handyservice />} />
-            <Route path="/leistungen/wlan-einrichtung" element={<WlanEinrichtung />} />
-            <Route path="/leistungen/voip-telefonie" element={<VoipTelefonie />} />
-            <Route path="/leistungen/geschaeftskunden" element={<Geschaeftskunden />} />
-            <Route path="/beratung" element={<Beratung />} />
-            <Route path="/strom-check" element={<StromCheck />} />
-            <Route path="/karriere" element={<Karriere />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/vodafone-gigamobil-rabatt" element={<VodafoneGigaMobil />} />
-            <Route path="/blog/telekom-preiserhoehung-optionen" element={<TelekomPreiserhoehung />} />
-            <Route path="/blog/samsung-galaxy-s26-angebot" element={<SamsungGalaxyS26 />} />
-            <Route path="/vertriebspartner" element={<Vertriebspartner />} />
-            <Route path="/tarif-rechner" element={<TarifRechner />} />
-            <Route path="/impressum" element={<Impressum />} />
-            <Route path="/datenschutz" element={<Datenschutz />} />
-            <Route path="/agb" element={<Agb />} />
-            <Route path="/barrierefreiheit" element={<Barrierefreiheit />} />
-            <Route path="*" element={<NotFound />} />
+            {/* Public Routes */}
+            <Route path="/" element={<Layout><Index /></Layout>} />
+            <Route path="/standorte" element={<Layout><Standorte /></Layout>} />
+            <Route path="/standorte/:slug" element={<Layout><StandortDetail /></Layout>} />
+            <Route path="/leistungen" element={<Layout><Leistungen /></Layout>} />
+            <Route path="/leistungen/dsl-festnetz" element={<Layout><DslFestnetz /></Layout>} />
+            <Route path="/leistungen/mobilfunk" element={<Layout><Mobilfunk /></Layout>} />
+            <Route path="/leistungen/handyservice" element={<Layout><Handyservice /></Layout>} />
+            <Route path="/leistungen/wlan-einrichtung" element={<Layout><WlanEinrichtung /></Layout>} />
+            <Route path="/leistungen/voip-telefonie" element={<Layout><VoipTelefonie /></Layout>} />
+            <Route path="/leistungen/geschaeftskunden" element={<Layout><Geschaeftskunden /></Layout>} />
+            <Route path="/beratung" element={<Layout><Beratung /></Layout>} />
+            <Route path="/strom-check" element={<Layout><StromCheck /></Layout>} />
+            <Route path="/karriere" element={<Layout><Karriere /></Layout>} />
+            <Route path="/team" element={<Layout><Team /></Layout>} />
+            <Route path="/blog" element={<Layout><Blog /></Layout>} />
+            <Route path="/blog/vodafone-gigamobil-rabatt" element={<Layout><VodafoneGigaMobil /></Layout>} />
+            <Route path="/blog/telekom-preiserhoehung-optionen" element={<Layout><TelekomPreiserhoehung /></Layout>} />
+            <Route path="/blog/samsung-galaxy-s26-angebot" element={<Layout><SamsungGalaxyS26 /></Layout>} />
+            <Route path="/vertriebspartner" element={<Layout><Vertriebspartner /></Layout>} />
+            <Route path="/tarif-rechner" element={<Layout><TarifRechner /></Layout>} />
+            <Route path="/impressum" element={<Layout><Impressum /></Layout>} />
+            <Route path="/datenschutz" element={<Layout><Datenschutz /></Layout>} />
+            <Route path="/agb" element={<Layout><Agb /></Layout>} />
+            <Route path="/barrierefreiheit" element={<Layout><Barrierefreiheit /></Layout>} />
+
+            {/* Admin Auth Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/registrieren" element={<AdminRegister />} />
+            <Route path="/admin/passwort-vergessen" element={<AdminForgotPassword />} />
+            <Route path="/admin/passwort-zuruecksetzen" element={<AdminResetPassword />} />
+
+            {/* Admin Protected Routes */}
+            <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
+            <Route path="/admin/blog" element={<AdminRoute><AdminBlog /></AdminRoute>} />
+            <Route path="/admin/aktionen" element={<AdminRoute><AdminAktionen /></AdminRoute>} />
+            <Route path="/admin/bewertungen" element={<AdminRoute><AdminBewertungen /></AdminRoute>} />
+            <Route path="/admin/team" element={<AdminRoute><AdminTeam /></AdminRoute>} />
+            <Route path="/admin/standorte" element={<AdminRoute><AdminStandorte /></AdminRoute>} />
+            <Route path="/admin/benachrichtigungen" element={<AdminRoute><AdminBenachrichtigungen /></AdminRoute>} />
+            <Route path="/admin/einstellungen" element={<AdminRoute><AdminEinstellungen /></AdminRoute>} />
+
+            <Route path="*" element={<Layout><NotFound /></Layout>} />
           </Routes>
-        </Layout>
-      </BrowserRouter>
-    </TooltipProvider>
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
