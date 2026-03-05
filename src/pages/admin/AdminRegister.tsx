@@ -95,7 +95,18 @@ export default function AdminRegister() {
 
             <div>
               <Label htmlFor="confirm">Passwort bestätigen</Label>
-              <Input id="confirm" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required className="mt-1" />
+              <div className="relative mt-1">
+                <Input
+                  id="confirm"
+                  type={showPassword ? 'text' : 'password'}
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                  required
+                />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                  {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
               {confirmPassword && !passwordsMatch && <p className="text-xs text-destructive mt-1">Passwörter stimmen nicht überein</p>}
             </div>
 
