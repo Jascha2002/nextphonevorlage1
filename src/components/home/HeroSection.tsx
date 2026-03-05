@@ -20,7 +20,7 @@ const HeroSection = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: "url(/images/team-photo-1.jpeg)" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-foreground/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
       </div>
 
       {/* Content */}
@@ -38,7 +38,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-lg md:text-2xl text-primary-foreground/90 mb-8"
+            className="text-lg md:text-2xl text-white/90 mb-8"
           >
             Dein Telefonladen in der Region
           </motion.p>
@@ -56,7 +56,7 @@ const HeroSection = () => {
             </Link>
             <Link
               to="/beratung"
-              className="px-8 py-3 border-2 border-primary-foreground text-primary-foreground font-semibold rounded-lg hover:bg-primary-foreground/10 transition-colors"
+              className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
             >
               Beratung sichern
             </Link>
@@ -65,10 +65,10 @@ const HeroSection = () => {
       </div>
 
       {/* Ticker */}
-      <div className="relative bg-foreground/80 py-3 overflow-hidden">
+      <div className="relative bg-black/80 py-3 overflow-hidden">
         <div className="animate-ticker whitespace-nowrap inline-flex">
           {Array.from({ length: 8 }).map((_, i) => (
-            <span key={i} className="text-primary-foreground text-sm font-medium tracking-wide">
+            <span key={i} className="text-white text-sm font-medium tracking-wide">
               {tickerText}
             </span>
           ))}
