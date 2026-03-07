@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import FloatingElements from "@/components/FloatingElements";
 import { CookieBannerProvider } from "@/components/CookieBanner";
+import DeutLichtBadge from "@/components/DeutLichtBadge";
 import AccessibilityToolbar from "@/components/AccessibilityToolbar";
 
 const Layout = ({ children }: { children: ReactNode }) => {
