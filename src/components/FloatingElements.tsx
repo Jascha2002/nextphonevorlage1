@@ -20,7 +20,7 @@ const FloatingElements = () => {
         <Link
           to="/admin"
           title="Admin Bereich"
-          className="fixed bottom-6 left-6 z-50 bg-primary text-primary-foreground w-11 h-11 rounded-full shadow-lg hover:opacity-90 transition-all flex items-center justify-center"
+          className="fixed bottom-[4.5rem] left-6 z-50 bg-primary text-primary-foreground w-11 h-11 rounded-full shadow-lg hover:opacity-90 transition-all flex items-center justify-center"
         >
           <Wrench className="h-5 w-5" />
         </Link>

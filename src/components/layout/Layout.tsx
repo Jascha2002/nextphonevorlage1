@@ -25,6 +25,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <main id="main-content" className="flex-1 pt-[70px]" role="main">{children}</main>
         <Footer onOpenCookieSettings={() => reopenRef.current?.()} />
         <FloatingElements />
+        <DeutLichtBadge />
         <AccessibilityToolbar />
       </div>
     </CookieBannerProvider>

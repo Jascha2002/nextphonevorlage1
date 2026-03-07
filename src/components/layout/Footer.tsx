@@ -80,6 +80,37 @@ const Footer = ({ onOpenCookieSettings }: FooterProps) => {
           <img src="/images/funding-logo.png" alt="Gefördert durch Freistaat Thüringen" className="h-20 md:h-24 dark:brightness-0 dark:invert" />
           <p className="text-xs text-white/50">© 2025 NextPhones | Alle Preise inkl. MwSt.</p>
         </div>
+
+        {/* DeutLicht credit */}
+        <div
+          className="mt-3 pt-3"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+        >
+          <p className="text-center">
+            <a
+              href="https://www.deutlicht.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="deutlicht-footer-credit"
+              style={{
+                fontSize: 11,
+                color: "rgba(255,255,255,0.3)",
+                textDecoration: "none",
+                transition: "color 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = "#E30613";
+                e.currentTarget.style.textDecoration = "underline";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = "rgba(255,255,255,0.3)";
+                e.currentTarget.style.textDecoration = "none";
+              }}
+            >
+              Designed &amp; developed by DeutLicht®
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
