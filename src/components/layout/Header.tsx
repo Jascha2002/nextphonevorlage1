@@ -86,7 +86,7 @@ const Header = () => {
     >
       <div className="container mx-auto h-full flex items-center justify-between px-4">
         <a href="/" onClick={handleLogoClick} className="flex-shrink-0 cursor-pointer select-none">
-          <img src="/images/nextphones-logo.png" alt="NextPhones Logo" className="h-14 md:h-16" draggable={false} />
+          <img src="/images/nextphones-logo.png" alt="NextPhones Logo" className="h-14 md:h-16 dark:invert dark:hue-rotate-180" draggable={false} />
         </a>
 
         {/* Desktop nav */}
