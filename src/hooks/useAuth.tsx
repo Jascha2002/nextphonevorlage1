@@ -2,6 +2,13 @@ import { createContext, useContext, useEffect, useState, useRef, ReactNode } fro
 import { supabase } from '@/integrations/supabase/client';
 import type { User, Session } from '@supabase/supabase-js';
 
+function checkIsDemoMode(): boolean {
+  if (typeof window === 'undefined') return false;
+  const urlParam = new URLSearchParams(window.location.search).get('demo') === 'true';
+  const stored = sessionStorage.getItem('np_demo') === 'true';
+  return urlParam || stored;
+}
+
 type AdminRole = 'super_admin' | 'redakteur' | 'betrachter';
 
 interface AdminUser {
