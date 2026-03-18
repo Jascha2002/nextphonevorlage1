@@ -8,6 +8,7 @@ import {
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import DemoBanner from './DemoBanner';
 
 const navItems = [
   { label: 'Dashboard', icon: LayoutDashboard, path: '/admin' },
@@ -35,8 +36,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const roleLabel = adminUser?.role === 'super_admin' ? 'Super Admin' : adminUser?.role === 'redakteur' ? 'Redakteur' : 'Betrachter';
   const roleBadgeColor = adminUser?.role === 'super_admin' ? 'bg-primary text-primary-foreground' : adminUser?.role === 'redakteur' ? 'bg-blue-600 text-white' : 'bg-muted-foreground text-white';
 
+  const isDemoMode = typeof window !== 'undefined' && (
+    new URLSearchParams(window.location.search).get('demo') === 'true'
+    || sessionStorage.getItem('np_demo') === 'true'
+  );
+
   return (
-    <div className="min-h-screen flex bg-background">
+    <>
+      <DemoBanner />
+      <div className={cn("min-h-screen flex bg-background", isDemoMode && "pt-10")}>
       {/* Sidebar */}
       <aside className={cn(
         "fixed left-0 top-0 h-full bg-[#1A1A1A] text-white flex flex-col z-50 transition-all duration-300",
@@ -134,6 +142,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Content */}
         <main className="p-6">{children}</main>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

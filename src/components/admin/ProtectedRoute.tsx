@@ -1,9 +1,23 @@
 import { Navigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, adminUser, loading } = useAuth();
   const location = useLocation();
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('demo') === 'true') {
+      sessionStorage.setItem('np_demo', 'true');
+    }
+  }, []);
+
+  const isDemoMode = new URLSearchParams(window.location.search).get('demo') === 'true'
+    || sessionStorage.getItem('np_demo') === 'true';
+
+  if (isDemoMode) {
+    return <>{children}</>;
+  }
 
   if (loading) {
     return (
