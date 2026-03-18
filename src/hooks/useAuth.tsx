@@ -177,13 +177,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const isSuperAdmin = adminUser?.role === 'super_admin';
-  const isEditor = adminUser?.role === 'redakteur' || isSuperAdmin;
-  const canEdit = adminUser?.role !== 'betrachter';
+  const isDemoActive = checkIsDemoMode();
+
+  const effectiveAdminUser = isDemoActive && !adminUser
+    ? {
+        id: 'demo',
+        email: 'demo@deutlicht.de',
+        name: 'Demo-Ansicht',
+        role: 'betrachter' as AdminRole,
+        is_active: true,
+        must_change_password: false,
+        photo_url: null,
+      }
+    : adminUser;
+
+  const isSuperAdmin = effectiveAdminUser?.role === 'super_admin';
+  const isEditor = effectiveAdminUser?.role === 'redakteur' || isSuperAdmin;
+  const canEdit = isDemoActive ? false : effectiveAdminUser?.role !== 'betrachter';
 
   return (
     <AuthContext.Provider value={{
-      user, session, adminUser, loading,
+      user: isDemoActive ? ({ id: 'demo' } as any) : user,
+      session,
+      adminUser: effectiveAdminUser,
+      loading,
       signIn, signUp, signOut, refreshAdminUser,
       isSuperAdmin, isEditor, canEdit
     }}>
