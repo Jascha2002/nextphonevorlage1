@@ -1,10 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { pakete } from '@/data/paketeData';
-import { toast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 
 const statusColors: Record<string, string> = {
   neu: 'bg-yellow-500',
@@ -20,6 +21,7 @@ const statusLabels: Record<string, string> = {
 };
 
 export default function AdminPakete() {
+  const { canEdit } = useAuth();
   const queryClient = useQueryClient();
 
   const { data: anfragen = [] } = useQuery({
