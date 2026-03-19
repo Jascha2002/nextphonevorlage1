@@ -137,6 +137,7 @@ export default function AdminAktionen() {
 
   const reorderMutation = useMutation({
     mutationFn: async (ordered: { id: string; sort_order: number }[]) => {
+      if (!canEdit) { toast.warning("Demo-Modus – keine Änderungen möglich"); return; }
       for (const item of ordered) {
         await supabase.from('aktionen').update({ sort_order: item.sort_order }).eq('id', item.id);
       }

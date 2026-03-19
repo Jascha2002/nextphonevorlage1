@@ -6,8 +6,12 @@ const StromCheck = () => {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
+  const isDemoMode = new URLSearchParams(window.location.search).get('demo') === 'true'
+    || sessionStorage.getItem('np_demo') === 'true';
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isDemoMode) { toast({ title: 'Demo-Modus', description: 'Anfrage wird nicht gesendet' }); return; }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);

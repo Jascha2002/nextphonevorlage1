@@ -11,6 +11,9 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
+    headers: {
+      "Content-Security-Policy": "frame-ancestors 'self' https://deutlicht.de https://*.lovable.app https://*.lovableproject.com",
+    },
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {

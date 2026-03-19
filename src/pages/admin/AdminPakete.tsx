@@ -34,6 +34,7 @@ export default function AdminPakete() {
 
   const updateStatus = useMutation({
     mutationFn: async ({ id, status }: { id: string; status: string }) => {
+      if (!canEdit) { toast.warning("Demo-Modus – keine Änderungen möglich"); return; }
       const { error } = await supabase.from('paket_anfragen').update({ status }).eq('id', id);
       if (error) throw error;
     },
