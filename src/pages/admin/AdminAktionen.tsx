@@ -92,6 +92,7 @@ export default function AdminAktionen() {
 
   const saveMutation = useMutation({
     mutationFn: async (item: any) => {
+      if (!canEdit) { toast.warning("Demo-Modus – keine Änderungen möglich"); return; }
       const d = { ...item };
       const id = d.id;
       delete d.id;
@@ -115,6 +116,7 @@ export default function AdminAktionen() {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
+      if (!canEdit) { toast.warning("Demo-Modus – keine Änderungen möglich"); return; }
       const { error } = await supabase.from('aktionen').delete().eq('id', id);
       if (error) throw error;
     },
@@ -126,6 +128,7 @@ export default function AdminAktionen() {
 
   const toggleMutation = useMutation({
     mutationFn: async ({ id, field, value }: { id: string; field: string; value: boolean }) => {
+      if (!canEdit) { toast.warning("Demo-Modus – keine Änderungen möglich"); return; }
       const { error } = await supabase.from('aktionen').update({ [field]: value } as any).eq('id', id);
       if (error) throw error;
     },
@@ -134,6 +137,7 @@ export default function AdminAktionen() {
 
   const reorderMutation = useMutation({
     mutationFn: async (ordered: { id: string; sort_order: number }[]) => {
+      if (!canEdit) { toast.warning("Demo-Modus – keine Änderungen möglich"); return; }
       for (const item of ordered) {
         await supabase.from('aktionen').update({ sort_order: item.sort_order }).eq('id', item.id);
       }

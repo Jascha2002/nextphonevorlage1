@@ -42,8 +42,12 @@ export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComp
 
   const toggleKomp = (k: string) => setKomps(prev => prev.includes(k) ? prev.filter(x => x !== k) : [...prev, k]);
 
+  const isDemoMode = new URLSearchParams(window.location.search).get('demo') === 'true'
+    || sessionStorage.getItem('np_demo') === 'true';
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isDemoMode) { toast({ title: 'Demo-Modus', description: 'Anfrage wird nicht gesendet' }); return; }
     if (!datenschutz || !vorname || !nachname) return;
     setSubmitting(true);
     try {
