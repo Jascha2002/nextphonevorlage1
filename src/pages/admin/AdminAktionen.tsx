@@ -116,6 +116,7 @@ export default function AdminAktionen() {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
+      if (!canEdit) { toast.warning("Demo-Modus – keine Änderungen möglich"); return; }
       const { error } = await supabase.from('aktionen').delete().eq('id', id);
       if (error) throw error;
     },
