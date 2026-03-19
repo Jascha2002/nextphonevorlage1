@@ -128,6 +128,7 @@ export default function AdminAktionen() {
 
   const toggleMutation = useMutation({
     mutationFn: async ({ id, field, value }: { id: string; field: string; value: boolean }) => {
+      if (!canEdit) { toast.warning("Demo-Modus – keine Änderungen möglich"); return; }
       const { error } = await supabase.from('aktionen').update({ [field]: value } as any).eq('id', id);
       if (error) throw error;
     },
