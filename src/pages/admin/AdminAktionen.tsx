@@ -92,6 +92,7 @@ export default function AdminAktionen() {
 
   const saveMutation = useMutation({
     mutationFn: async (item: any) => {
+      if (!canEdit) { toast.warning("Demo-Modus – keine Änderungen möglich"); return; }
       const d = { ...item };
       const id = d.id;
       delete d.id;
