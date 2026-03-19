@@ -40,7 +40,7 @@ export default function AdminPakete() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['paket-anfragen'] });
-      toast({ title: 'Status aktualisiert' });
+      toast.success('Status aktualisiert');
     },
   });
 
