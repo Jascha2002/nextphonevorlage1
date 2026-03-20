@@ -7,6 +7,8 @@ const WlanEinrichtung = () => (
     title="WLAN-Einrichtung"
     subtitle="Die Geräte sind vorhanden und Du kannst es kaum abwarten im Internet zu surfen. Doch die Einrichtung ist komplizierter als gedacht? Wir richten Deinen DSL-Anschluss und WLAN-Router ein und konfigurieren Deine Telefonanlage vor Ort."
     heroImage={heroImage}
+    seoTitle="WLAN-Einrichtung in Thüringen — NextPhones Erfurt, Weimar, Gera, Apolda"
+    seoDescription="Professionelle WLAN-Einrichtung und Router-Konfiguration bei NextPhones in Erfurt, Weimar, Gera und Apolda. Netzwerkanalyse und Optimierung vor Ort."
     sections={[
       {
         title: "Professionelle WLAN-Einrichtung",

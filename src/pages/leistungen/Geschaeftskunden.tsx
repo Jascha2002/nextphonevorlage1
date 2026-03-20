@@ -7,6 +7,8 @@ const Geschaeftskunden = () => (
     title="Geschäftskunden"
     subtitle="Individuelle Rahmenverträge – mit zugeschnittenen Leistungen zu Business-Konditionen."
     heroImage={heroImage}
+    seoTitle="Geschäftskunden Lösungen in Thüringen — NextPhones Erfurt, Weimar, Gera, Apolda"
+    seoDescription="Business-Tarife und Rahmenverträge für Geschäftskunden bei NextPhones in Erfurt, Weimar, Gera und Apolda. Flottenmanagement und persönlicher Ansprechpartner."
     sections={[
       {
         title: "Zugeschnittene Leistungen dank unserer Rahmenverträge",

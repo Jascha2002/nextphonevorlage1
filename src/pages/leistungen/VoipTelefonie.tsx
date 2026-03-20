@@ -7,6 +7,8 @@ const VoipTelefonie = () => (
     title="VoIP-Telefonanlagen"
     subtitle="Bei NextPhones erhältst Du als Geschäftskunde die ideale VoIP-Telefonanlagen-Lösung. Lass Dich unverbindlich beraten und lerne alle Vorteile der IP-Telefonie kennen."
     heroImage={heroImage}
+    seoTitle="VoIP-Telefonanlagen in Thüringen — NextPhones Erfurt, Weimar, Gera, Apolda"
+    seoDescription="VoIP-Telefonanlagen und IP-Telefonie für Geschäftskunden bei NextPhones in Erfurt, Weimar, Gera und Apolda. Placetel Cloud-Telefonanlage und Beratung."
     sections={[
       {
         title: "Die ideale IP-Telefonie-Lösung dank unseres Angebots",
