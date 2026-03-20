@@ -116,7 +116,7 @@ export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComp
               <label className="block text-sm font-medium text-foreground mb-1.5">Gewünschtes Paket</label>
               <select value={paket} onChange={e => setPaket(e.target.value)} className="w-full px-4 py-2.5 bg-card border border-border rounded-lg text-card-foreground text-sm">
                 <option value="">Bitte wählen</option>
-                {pakete.map(p => <option key={p.id} value={p.id}>{p.title}</option>)}
+                {pakete.map(p => <option key={p.slug} value={p.slug}>{p.title}</option>)}
                 <option value="eigene">Eigene Konfiguration (vom Konfigurator)</option>
               </select>
             </div>
