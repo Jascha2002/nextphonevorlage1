@@ -17,6 +17,14 @@ const componentOptions = [
 ];
 
 export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComponents, prePersons }: Props) {
+  const { data: paketeFromDb = [] } = useQuery({
+    queryKey: ['public-pakete'],
+    queryFn: async () => {
+      const { data } = await supabase.from('pakete').select('id,slug,title').eq('is_active', true).order('sort_order');
+      return (data || []) as { id: string; slug: string; title: string }[];
+    },
+  });
+
   const [paket, setPaket] = useState(preSelectedPaket || '');
   const [komps, setKomps] = useState<string[]>(preSelectedComponents || []);
   const [anzahl, setAnzahl] = useState(prePersons || 1);
