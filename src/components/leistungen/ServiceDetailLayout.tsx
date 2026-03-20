@@ -22,6 +22,12 @@ interface ServiceDetailLayoutProps {
 const ServiceDetailLayout = ({ title, subtitle, heroImage, sections, seoTitle, seoDescription }: ServiceDetailLayoutProps) => {
   return (
     <div>
+      {(seoTitle || seoDescription) && (
+        <Helmet>
+          {seoTitle && <title>{seoTitle}</title>}
+          {seoDescription && <meta name="description" content={seoDescription} />}
+        </Helmet>
+      )}
       {/* Hero */}
       <section className="relative h-[340px] md:h-[420px] overflow-hidden">
         <img src={heroImage} alt={title} className="w-full h-full object-cover" />

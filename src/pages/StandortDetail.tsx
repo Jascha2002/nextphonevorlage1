@@ -55,6 +55,12 @@ const StandortDetail = () => {
 
   return (
     <div>
+      {seo && (
+        <Helmet>
+          <title>{seo.title}</title>
+          <meta name="description" content={seo.description} />
+        </Helmet>
+      )}
       {/* Hero */}
       <div className="bg-primary py-16">
         <div className="container mx-auto px-4 text-center">

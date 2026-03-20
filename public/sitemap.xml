@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.nextphones.de/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.nextphones.de/standorte</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.nextphones.de/standorte/erfurt</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.nextphones.de/standorte/apolda</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.nextphones.de/standorte/weimar</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.nextphones.de/standorte/gera-debschwitz</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.nextphones.de/standorte/gera-zentrum</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.nextphones.de/leistungen</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.nextphones.de/leistungen/dsl-festnetz</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.nextphones.de/leistungen/mobilfunk</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.nextphones.de/leistungen/handyservice</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.nextphones.de/leistungen/wlan-einrichtung</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.nextphones.de/leistungen/voip-telefonie</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.nextphones.de/leistungen/geschaeftskunden</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.nextphones.de/beratung</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.nextphones.de/pakete</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.nextphones.de/tarif-rechner</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.nextphones.de/strom-check</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.nextphones.de/team</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.nextphones.de/karriere</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.nextphones.de/blog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.nextphones.de/blog/vodafone-gigamobil-rabatt</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.nextphones.de/blog/telekom-preiserhoehung-optionen</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.nextphones.de/blog/samsung-galaxy-s26-angebot</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.nextphones.de/vertriebspartner</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.nextphones.de/impressum</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.nextphones.de/datenschutz</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.nextphones.de/agb</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.nextphones.de/barrierefreiheit</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>
