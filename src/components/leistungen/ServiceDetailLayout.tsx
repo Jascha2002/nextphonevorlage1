@@ -15,9 +15,11 @@ interface ServiceDetailLayoutProps {
   subtitle: string;
   heroImage: string;
   sections: ServiceSection[];
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
-const ServiceDetailLayout = ({ title, subtitle, heroImage, sections }: ServiceDetailLayoutProps) => {
+const ServiceDetailLayout = ({ title, subtitle, heroImage, sections, seoTitle, seoDescription }: ServiceDetailLayoutProps) => {
   return (
     <div>
       {/* Hero */}
