@@ -59,7 +59,7 @@ export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComp
     if (!datenschutz || !vorname || !nachname) return;
     setSubmitting(true);
     try {
-      const paketLabel = pakete.find(p => p.id === paket)?.title || paket || 'Eigene Konfiguration';
+      const paketLabel = pakete.find(p => p.slug === paket)?.title || paket || 'Eigene Konfiguration';
       const { error } = await supabase.from('paket_anfragen').insert({
         paket: paketLabel,
         komponenten: komps,
