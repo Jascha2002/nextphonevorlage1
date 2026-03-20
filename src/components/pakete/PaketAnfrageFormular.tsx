@@ -17,7 +17,7 @@ const componentOptions = [
 ];
 
 export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComponents, prePersons }: Props) {
-  const { data: paketeFromDb = [] } = useQuery({
+  const { data: pakete = [] } = useQuery({
     queryKey: ['public-pakete'],
     queryFn: async () => {
       const { data } = await supabase.from('pakete').select('id,slug,title').eq('is_active', true).order('sort_order');
