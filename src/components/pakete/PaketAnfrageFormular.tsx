@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Check, Phone } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
-import { pakete } from '@/data/paketeData';
 import { toast } from '@/hooks/use-toast';
 
 interface Props {
@@ -17,6 +17,14 @@ const componentOptions = [
 ];
 
 export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComponents, prePersons }: Props) {
+  const { data: pakete = [] } = useQuery({
+    queryKey: ['public-pakete'],
+    queryFn: async () => {
+      const { data } = await supabase.from('pakete').select('id,slug,title').eq('is_active', true).order('sort_order');
+      return (data || []) as { id: string; slug: string; title: string }[];
+    },
+  });
+
   const [paket, setPaket] = useState(preSelectedPaket || '');
   const [komps, setKomps] = useState<string[]>(preSelectedComponents || []);
   const [anzahl, setAnzahl] = useState(prePersons || 1);
@@ -51,7 +59,7 @@ export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComp
     if (!datenschutz || !vorname || !nachname) return;
     setSubmitting(true);
     try {
-      const paketLabel = pakete.find(p => p.id === paket)?.title || paket || 'Eigene Konfiguration';
+      const paketLabel = pakete.find(p => p.slug === paket)?.title || paket || 'Eigene Konfiguration';
       const { error } = await supabase.from('paket_anfragen').insert({
         paket: paketLabel,
         komponenten: komps,
@@ -108,7 +116,7 @@ export default function PaketAnfrageFormular({ preSelectedPaket, preSelectedComp
               <label className="block text-sm font-medium text-foreground mb-1.5">Gewünschtes Paket</label>
               <select value={paket} onChange={e => setPaket(e.target.value)} className="w-full px-4 py-2.5 bg-card border border-border rounded-lg text-card-foreground text-sm">
                 <option value="">Bitte wählen</option>
-                {pakete.map(p => <option key={p.id} value={p.id}>{p.title}</option>)}
+                {pakete.map(p => <option key={p.slug} value={p.slug}>{p.title}</option>)}
                 <option value="eigene">Eigene Konfiguration (vom Konfigurator)</option>
               </select>
             </div>

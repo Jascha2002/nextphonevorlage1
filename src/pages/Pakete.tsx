@@ -21,8 +21,8 @@ export default function Pakete() {
     ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
-  const handlePaketAnfrage = useCallback((paketId: string) => {
-    setPreSelectedPaket(paketId);
+  const handlePaketAnfrage = useCallback((paketSlug: string) => {
+    setPreSelectedPaket(paketSlug);
     setPreSelectedComponents([]);
     setPrePersons(1);
     setTimeout(() => scrollTo(formRef), 100);

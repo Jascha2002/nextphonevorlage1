@@ -429,6 +429,63 @@ export type Database = {
         }
         Relationships: []
       }
+      pakete: {
+        Row: {
+          badge: string
+          badge_color: string | null
+          core_services: string[]
+          created_at: string
+          detail_description: string
+          detail_example: string
+          detail_notes: string
+          id: string
+          is_active: boolean
+          optional_services: string[]
+          price: string
+          price_note: string
+          slug: string
+          sort_order: number
+          subtitle: string
+          title: string
+        }
+        Insert: {
+          badge?: string
+          badge_color?: string | null
+          core_services?: string[]
+          created_at?: string
+          detail_description?: string
+          detail_example?: string
+          detail_notes?: string
+          id?: string
+          is_active?: boolean
+          optional_services?: string[]
+          price?: string
+          price_note?: string
+          slug: string
+          sort_order?: number
+          subtitle?: string
+          title: string
+        }
+        Update: {
+          badge?: string
+          badge_color?: string | null
+          core_services?: string[]
+          created_at?: string
+          detail_description?: string
+          detail_example?: string
+          detail_notes?: string
+          id?: string
+          is_active?: boolean
+          optional_services?: string[]
+          price?: string
+          price_note?: string
+          slug?: string
+          sort_order?: number
+          subtitle?: string
+          title?: string
+        }
+        Relationships: []
+      }
       sonder_oeffnungszeiten: {
         Row: {
           close_time: string | null
