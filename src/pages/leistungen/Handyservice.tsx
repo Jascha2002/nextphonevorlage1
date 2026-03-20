@@ -7,6 +7,8 @@ const Handyservice = () => (
     title="Handyservice"
     subtitle="Unser Service rund um Dein Smartphone – schnell, qualitätsorientiert und zum besten Preis!"
     heroImage={heroImage}
+    seoTitle="Handyservice & Reparatur in Thüringen — NextPhones Erfurt, Weimar, Gera, Apolda"
+    seoDescription="Smartphone-Reparatur und Handyservice bei NextPhones in Erfurt, Weimar, Gera und Apolda. Displayreparatur, Datenübertragung und Handyversicherung."
     sections={[
       {
         title: "Unser Service rund um Dein Smartphone",

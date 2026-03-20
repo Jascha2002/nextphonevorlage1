@@ -7,6 +7,8 @@ const DslFestnetz = () => (
     title="DSL & Festnetz"
     subtitle="Bei NextPhones erhältst Du das beste DSL & Festnetz Angebot, das zu Deinen Bedürfnissen passt. Damit Du mit Highspeed im besten Netz surfen kannst."
     heroImage={heroImage}
+    seoTitle="DSL & Festnetz in Thüringen — NextPhones Erfurt, Weimar, Gera, Apolda"
+    seoDescription="DSL & Festnetz Beratung bei NextPhones in Erfurt, Weimar, Gera und Apolda. Anbietervergleich, professionelle Einrichtung und persönlicher Service vor Ort."
     sections={[
       {
         title: "Immer das beste Netz dank unseres Angebots",

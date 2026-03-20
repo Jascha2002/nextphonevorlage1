@@ -7,6 +7,8 @@ const Mobilfunk = () => (
     title="Mobilfunk"
     subtitle="Bei NextPhones erhältst Du das beste Mobilfunk-Angebot, das zu Deinen Bedürfnissen passt. Damit Du überall im besten Netz telefonieren kannst."
     heroImage={heroImage}
+    seoTitle="Mobilfunk Beratung in Thüringen — NextPhones Erfurt, Weimar, Gera, Apolda"
+    seoDescription="Mobilfunk-Tarife und Smartphone-Beratung bei NextPhones in Erfurt, Weimar, Gera und Apolda. Vertrag oder Prepaid – persönliche Beratung vor Ort."
     sections={[
       {
         title: "Immer das beste Netz dank unseres Angebots",

@@ -1,11 +1,35 @@
 import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { locations } from "@/data/locations";
 import { regionalData } from "@/data/regionalData";
 import { vorOrtData } from "@/data/vorOrtData";
 import RegionalServiceArea from "@/components/standort/RegionalServiceArea";
 import VorOrtServiceSection from "@/components/standort/VorOrtServiceSection";
 import { MapPin, Phone, Clock, Navigation, User, Briefcase, Users, Building2 } from "lucide-react";
+
+const seoData: Record<string, { title: string; description: string }> = {
+  erfurt: {
+    title: "NextPhones Erfurt — Telefonladen Meyfartstr. | DSL & Mobilfunk",
+    description: "NextPhones Erfurt in der Meyfartstr. 19 — persönliche Beratung zu DSL, Mobilfunk und Handyservice. Jetzt Termin sichern.",
+  },
+  apolda: {
+    title: "NextPhones Apolda — Telefonladen Goldgasse | DSL & Mobilfunk",
+    description: "NextPhones Apolda in der Goldgasse 9 — persönliche Beratung zu DSL, Mobilfunk und Handyservice. Jetzt Termin sichern.",
+  },
+  weimar: {
+    title: "NextPhones Weimar — Telefonladen Straßburger Platz | DSL & Mobilfunk",
+    description: "NextPhones Weimar am Straßburger Platz 5 — persönliche Beratung zu DSL, Mobilfunk und Handyservice. Jetzt Termin sichern.",
+  },
+  "gera-debschwitz": {
+    title: "NextPhones Gera Debschwitz — Telefonladen Wiesestr. | DSL & Mobilfunk",
+    description: "NextPhones Gera Debschwitz in der Wiesestr. 63 — persönliche Beratung zu DSL, Mobilfunk und Handyservice. Jetzt Termin sichern.",
+  },
+  "gera-zentrum": {
+    title: "NextPhones Gera Zentrum — Telefonladen Christian-Schmidt-Str. | DSL & Mobilfunk",
+    description: "NextPhones Gera Zentrum in der Christian-Schmidt-Str. 12 — persönliche Beratung zu DSL, Mobilfunk und Handyservice. Jetzt Termin sichern.",
+  },
+};
 
 const services = [
   { icon: User, label: "Privatkunden", desc: "DSL, Mobilfunk, Handyservice & mehr" },
@@ -18,20 +42,7 @@ const StandortDetail = () => {
   const location = locations.find((l) => l.slug === slug);
   const region = slug ? regionalData[slug] : undefined;
   const vorOrt = slug ? vorOrtData[slug] : undefined;
-
-  useEffect(() => {
-    if (region) {
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) {
-        meta.setAttribute("content", region.seoDescription);
-      } else {
-        const tag = document.createElement("meta");
-        tag.name = "description";
-        tag.content = region.seoDescription;
-        document.head.appendChild(tag);
-      }
-    }
-  }, [region]);
+  const seo = slug ? seoData[slug] : undefined;
 
   if (!location) {
     return (
@@ -44,6 +55,12 @@ const StandortDetail = () => {
 
   return (
     <div>
+      {seo && (
+        <Helmet>
+          <title>{seo.title}</title>
+          <meta name="description" content={seo.description} />
+        </Helmet>
+      )}
       {/* Hero */}
       <div className="bg-primary py-16">
         <div className="container mx-auto px-4 text-center">
