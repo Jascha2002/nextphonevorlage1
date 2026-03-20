@@ -1,13 +1,30 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Plus, ChevronDown, ChevronUp } from 'lucide-react';
-import { pakete, type PaketData } from '@/data/paketeData';
+import { supabase } from '@/integrations/supabase/client';
 
-interface Props {
-  onAnfrage: (paketId: string) => void;
+interface PaketData {
+  id: string;
+  slug: string;
+  badge: string;
+  badge_color: string | null;
+  title: string;
+  subtitle: string;
+  core_services: string[];
+  optional_services: string[];
+  price: string;
+  price_note: string;
+  detail_description: string;
+  detail_example: string;
+  detail_notes: string;
 }
 
-function PaketCard({ paket, onAnfrage }: { paket: PaketData; onAnfrage: (id: string) => void }) {
+interface Props {
+  onAnfrage: (paketSlug: string) => void;
+}
+
+function PaketCard({ paket, onAnfrage }: { paket: PaketData; onAnfrage: (slug: string) => void }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -15,14 +32,14 @@ function PaketCard({ paket, onAnfrage }: { paket: PaketData; onAnfrage: (id: str
       <div className="p-6">
         <div className="flex items-start justify-between mb-3">
           <h3 className="text-xl font-bold text-card-foreground">{paket.title}</h3>
-          <span className={`text-xs font-semibold px-3 py-1 rounded-full ${paket.badgeColor || 'bg-primary/10 text-primary'}`}>
+          <span className={`text-xs font-semibold px-3 py-1 rounded-full ${paket.badge_color || 'bg-primary/10 text-primary'}`}>
             {paket.badge}
           </span>
         </div>
         <p className="text-sm text-muted-foreground mb-4">{paket.subtitle}</p>
 
         <div className="space-y-2 mb-4">
-          {paket.coreServices.map((s) => (
+          {paket.core_services.map((s) => (
             <div key={s} className="flex items-start gap-2 text-sm text-card-foreground">
               <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
               <span>{s}</span>
@@ -31,7 +48,7 @@ function PaketCard({ paket, onAnfrage }: { paket: PaketData; onAnfrage: (id: str
         </div>
 
         <div className="space-y-1.5 mb-5">
-          {paket.optionalServices.map((s) => (
+          {paket.optional_services.map((s) => (
             <div key={s} className="flex items-start gap-2 text-sm text-muted-foreground">
               <Plus className="h-4 w-4 shrink-0 mt-0.5" />
               <span>{s}</span>
@@ -41,7 +58,7 @@ function PaketCard({ paket, onAnfrage }: { paket: PaketData; onAnfrage: (id: str
 
         <div className="mb-5">
           <p className="text-2xl font-bold text-primary">{paket.price}</p>
-          <p className="text-xs text-muted-foreground mt-1">{paket.priceNote}</p>
+          <p className="text-xs text-muted-foreground mt-1">{paket.price_note}</p>
         </div>
 
         <div className="flex gap-2">
@@ -53,7 +70,7 @@ function PaketCard({ paket, onAnfrage }: { paket: PaketData; onAnfrage: (id: str
             {open ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </button>
           <button
-            onClick={() => onAnfrage(paket.id)}
+            onClick={() => onAnfrage(paket.slug)}
             className="flex-1 px-4 py-2.5 bg-primary text-white rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
           >
             Paket anfragen
@@ -73,18 +90,18 @@ function PaketCard({ paket, onAnfrage }: { paket: PaketData; onAnfrage: (id: str
             <div className="px-6 pb-6 pt-2 border-t border-border space-y-4">
               <div>
                 <h4 className="font-semibold text-sm text-card-foreground mb-1">Für wen ist dieses Paket?</h4>
-                <p className="text-sm text-muted-foreground">{paket.detailDescription}</p>
+                <p className="text-sm text-muted-foreground">{paket.detail_description}</p>
               </div>
               <div>
                 <h4 className="font-semibold text-sm text-card-foreground mb-1">Beispielkonfiguration</h4>
-                <p className="text-sm text-muted-foreground">{paket.detailExample}</p>
+                <p className="text-sm text-muted-foreground">{paket.detail_example}</p>
               </div>
               <div>
                 <h4 className="font-semibold text-sm text-card-foreground mb-1">Wichtige Hinweise</h4>
-                <p className="text-sm text-muted-foreground">{paket.detailNotes}</p>
+                <p className="text-sm text-muted-foreground">{paket.detail_notes}</p>
               </div>
               <button
-                onClick={() => onAnfrage(paket.id)}
+                onClick={() => onAnfrage(paket.slug)}
                 className="w-full px-4 py-2.5 bg-primary text-white rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity"
               >
                 Paket anfragen
@@ -98,6 +115,14 @@ function PaketCard({ paket, onAnfrage }: { paket: PaketData; onAnfrage: (id: str
 }
 
 export default function PaketCards({ onAnfrage }: Props) {
+  const { data: pakete = [], isLoading } = useQuery({
+    queryKey: ['public-pakete'],
+    queryFn: async () => {
+      const { data } = await supabase.from('pakete').select('*').eq('is_active', true).order('sort_order');
+      return (data || []) as PaketData[];
+    },
+  });
+
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -111,11 +136,17 @@ export default function PaketCards({ onAnfrage }: Props) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {pakete.map((p) => (
-            <PaketCard key={p.id} paket={p} onAnfrage={onAnfrage} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="text-center py-12 text-muted-foreground">Pakete werden geladen…</div>
+        ) : pakete.length === 0 ? (
+          <div className="text-center py-12 text-muted-foreground">Aktuell keine Pakete verfügbar.</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {pakete.map((p) => (
+              <PaketCard key={p.id} paket={p} onAnfrage={onAnfrage} />
+            ))}
+          </div>
+        )}
 
         <div className="bg-muted border border-border rounded-lg p-6 text-center max-w-3xl mx-auto">
           <p className="text-sm text-muted-foreground leading-relaxed">

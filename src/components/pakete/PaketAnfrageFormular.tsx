@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Check, Phone } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
-import { pakete } from '@/data/paketeData';
 import { toast } from '@/hooks/use-toast';
 
 interface Props {
