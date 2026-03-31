@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, ChevronDown, Shield } from "lucide-react";
 import { locations } from "@/data/locations";
 import ThemeToggle from "@/components/ThemeToggle";
 
@@ -47,26 +47,6 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [logoSrc, setLogoSrc] = useState("/images/nextphones-logo.png");
   const location = useLocation();
-  const navigate = useNavigate();
-  const clickCountRef = useRef(0);
-  const clickTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const handleLogoClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    clickCountRef.current += 1;
-    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
-    if (clickCountRef.current >= 3) {
-      clickCountRef.current = 0;
-      navigate('/admin/login');
-      return;
-    }
-    clickTimerRef.current = setTimeout(() => {
-      if (clickCountRef.current < 3) {
-        navigate('/');
-      }
-      clickCountRef.current = 0;
-    }, 400);
-  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -139,9 +119,18 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto h-full flex items-center justify-between px-4">
-        <a href="/" onClick={handleLogoClick} className="flex-shrink-0 cursor-pointer select-none">
-          <img src={logoSrc} alt="NextPhones Logo" className="h-14 md:h-16" draggable={false} />
-        </a>
+        <div className="flex items-center gap-2">
+          <Link to="/" className="flex-shrink-0 cursor-pointer select-none">
+            <img src={logoSrc} alt="NextPhones Logo" className="h-14 md:h-16" draggable={false} />
+          </Link>
+          <Link
+            to="/admin/login"
+            className="p-1.5 rounded-md text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
+            title="Admin Bereich"
+          >
+            <Shield className="h-4 w-4" />
+          </Link>
+        </div>
 
         {/* Desktop nav */}
         <nav aria-label="Hauptnavigation" className="hidden lg:flex items-center gap-1">
